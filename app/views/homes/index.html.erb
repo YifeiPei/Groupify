@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Groupify - the sorting hat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../assets/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="../../assets/stylesheets/Groupify.css" rel="stylesheet" >
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Groupify</a>
+        </div>
+        <div class="navbar-collapse collapse">
+ 
+ 	<div class="navbar-form navbar-right">
+ 		<%= form_for(@home) do |f| %>
+  		<% if @home.errors.any? %>
+    		<div id="error_explanation">
+      		<h2><%= pluralize(@home.errors.count, "error") %> prohibited this home from being saved:</h2>
+
+      			<ul>
+      			<% @home.errors.full_messages.each do |msg| %>
+        			<li><%= msg %></li>
+      			<% end %>
+      			</ul>
+    		</div>
+  			<% end %>
+  
+  <div class="form-group">
+    <%= f.text_field :email, placeholder: 'Email', class: "form-control", size: "20" %>
+	</div>
+    <%= f.submit "Keep Update",:class => "btn btn-success" %>
+<% end %>
+          </div>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Create effective teams!</h1>
+        <p>Groupify is a tool for educators to sort students into teams for group based learning, according to specific criteria.
+        We apply evidence based research on group based learning outcomes to form student groups which 
+        enable students to reach optimal performance levels.  
+       </p>
+        <!--  <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p> -->
+          <p><a href="studentPage.html" class="btn btn-primary btn-lg" role="button">Try Student Interface &raquo;</a></p>
+          <p><a href="courses.html" class="btn btn-primary btn-lg" role="button">Try Lecturer Interface &raquo;</a></p>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Sort by criteria</h2>
+          <p>Groupify gives you the power to sort by chosen criteria. Choose from criteria such as available times, 
+          past academic results, cultural background, degree speciality and more. </p>
+          <p><a class="btn btn-default" href="#sortByCriteria" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Tailored grouping algorithms</h2>
+          <p>Each discipline of study has its own criteria which influence success. Our algorithms are 
+          specially tailored to individual disciplines. We also give you the power to control the 
+          behaviour of the algorithm to apply your insights.</p>
+          <p><a class="btn btn-default" href="#tailoredGroupingAlgorithms" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Succeed as an educator</h2>
+          <p>Our team is committed to building a product which maximises your success as an educator.
+          By applying the latest research in group based learning, we craft algorithms which can 
+          produce optimal teams for your student body. Students perform better.</p>
+          <p><a class="btn btn-default" href="#succeedAsAnEducator" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+<div class="row" id='sortByCriteria' >
+<div class="container" >
+<h2>Sort students into groups using specified criteria</h2>
+<p>We want you to have full control of how your students are sorted. So we give you the power to 
+specify what criteria to sort by and the priority of each. We provide the most relevant criteria
+to choose from, you can include as many or as few as you wish. Your options include having the 
+students nominate the times they are available; using past academic results; awareness of cultural
+background; and field of degree specialisation. We value your feedback! So if there are other criteria
+that you use to sort your students that you would like us to include, please let us know! 
+</p>
+</div>
+</div>
+<div class="row" id='tailoredGroupingAlgorithms'>
+<div class="container">
+<h2>We hand craft algorithms to specific domains</h2>
+Take advantage of the latest education research. We break it down discipline by discipline and tailor
+our algorithms to create groups based on what's relevant for team performance in your subject area.
+While some things are common to group performance in every domain, some things are not. We tailor our 
+algorithms to create groups with the optimal mix of students in each area. If your area of education is
+not yet included, drop us a line and we'll get on it.
+</div>
+
+</div>
+
+<div class="row" id='succeedAsAnEducator' >
+<div class="container">
+<h2>Succeed as an educator!</h2>
+<p>Groupify will help you to sort students into the groups which maximise performance accross the
+student body. Students will perform better.</p>
+</div>
+</div>
+
+		<hr>
+
+      <footer>
+        <p>&copy; Groupify 2013</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
+
+
+<!--  
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+<!-- 
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>SortingHat - by Wagner and Pei</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.css" />
+    
+  </head>
+
+  <body>
+    <h1>Welcome to Sorting Hat</h1>
+	
+    <table>
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Please select one:</td>        
+      </tr>
+      <tr>
+        <td><a href="lecturerLogin.jsp">Lecturer</a></td>
+      </tr>
+      <tr>
+      	<td><form action="/schedulingsystem" method="Get" />
+      	<input name="className" type="text/plain" placeholder="Class Name" />
+      	<!-- 
+      	MAKE A DROPDOWN SELECT MENU FOR CLASSES TO CHOOSE FROM
+      	 a href="createStudentPage.jsp">Student</a></td --><!-- 
+      	<input type="submit" name="Submit" value="Student" />
+      	</form>
+      	</td>
+      	</tr>
+    </table>
+  </body>
+</html>
+-->
