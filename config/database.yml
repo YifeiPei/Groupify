@@ -35,5 +35,5 @@ production:
   database: trunk_production
   pool: 5
   username: root
-  password:
+  password: leap4joy
   socket: /var/run/mysqld/mysqld.sock
