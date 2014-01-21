@@ -34,6 +34,6 @@ production:
   encoding: utf8
   database: trunk_production
   pool: 5
-  username: root
+  username: groupify
   password: leap4joy
   socket: /var/run/mysqld/mysqld.sock
