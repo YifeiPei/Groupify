@@ -1,11 +1,28 @@
 Trunk::Application.routes.draw do
-  resources :homes
+
+  get "login/login"
+  get "signup/signup"
+
+  get "contact/contact"
+  get "sort/index"
+  get "contact/index"
+  get "class/index"
+  get "lecturer/index"
+  get "signup", :to => "signup#signup"
+  get "login", :to => "login#login"
+  get "home", :to => "lecturer#index"
+ 
+
+  get ':controller(/:action(/:id))(.:format)'
+	post ':controller(/:action(/:id(.:format)))'
+  resources :landings
+   root :to => 'landings#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'homes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -4,7 +4,9 @@ gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
 end
+gem 'protected_attributes'
 
+gem 'devise', '3.0.0.rc'
 gem 'therubyracer'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

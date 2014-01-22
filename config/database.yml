@@ -25,15 +25,15 @@ test:
   encoding: utf8
   database: trunk_test
   pool: 5
-  username: groupify
-  password: leap4joy
-  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
   
 production:
   adapter: mysql2
   encoding: utf8
   database: trunk_production
   pool: 5
-  username: groupify
-  password: leap4joy
-  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
