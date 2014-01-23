@@ -1,5 +1,6 @@
 Trunk::Application.routes.draw do
 
+  get "upload/index"
   get "login/login"
   get "signup/signup"
 

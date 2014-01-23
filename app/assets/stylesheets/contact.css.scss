@@ -1,3 +1,39 @@
 // Place all the styles related to the contact controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Author: Aidan Snoswell 1607488
+// Date created: 01/05/13
+// SCSS for the email page
+
+
+$emailwidth: 500px;
+$emaillabelwidth: 75px;
+
+#message
+{
+  width: $emailwidth; 
+}
+
+#to, #cc, #subject, #message {
+  width: $emailwidth - $emaillabelwidth;
+  max-width: $emailwidth - $emaillabelwidth;
+  float:right;
+}
+
+#emailcontainer {
+	width: $emailwidth;
+	position: relative;
+	left: (1000px - $emailwidth) / 2 - 55px;
+	text-align: left;
+}
+
+#emailcontainer div {
+	clear:both;
+}
+
+.emailSelection {
+	width: 200px;
+	position: absolute;
+	top: 20px;
+	left: 10px;
+}

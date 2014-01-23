@@ -18,7 +18,7 @@ class LandingsController < ApplicationController
 
     respond_to do |format|
       if @landing.save
-        format.html { redirect_to @landing, notice: 'Landing was successfully created.' }
+        format.html { redirect_to @landing, notice: 'Email was successfully created.' }
         format.json { render action: 'index', status: :created, location: @landing }
       else
         format.html { render action: 'index' }
