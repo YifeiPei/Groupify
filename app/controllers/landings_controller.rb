@@ -4,11 +4,18 @@ class LandingsController < ApplicationController
   def index
     @landing = Landing.new
   end
+  
+  def feedback
+  end
+  
+  def Thankyou
+  end
+
 
   # GET /landings/1
   # GET /landings/1.json
   def show
-	redirect_to root_path
+	render "feedback"
   end
 
   # POST /landings

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def authenticate_user
   	unless session[:user_id]
-  		redirect_to(:controller => 'sessions', :action => 'login')
+  		redirect_to(:controller => 'login', :action => 'login')
   		return false
   	else
       # set current_user by the current user object
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   #This method for prevent user to access Signup & Login Page without logout
   def save_login_state
     if session[:user_id]
-            redirect_to(:controller => 'sessions', :action => 'home')
+            redirect_to(:controller => 'lecturer', :action => 'index')
       return false
     else
       return true

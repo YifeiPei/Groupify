@@ -5,6 +5,8 @@ group :development do
 end
 gem 'protected_attributes'
 
+gem "bcrypt-ruby", :require => "bcrypt"
+
 gem 'devise', '3.0.0.rc'
 gem 'therubyracer'
 
