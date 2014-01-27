@@ -1,5 +1,5 @@
 cp system_config/ubuntu_database.yml config/database.yml
-sudo bundle install
+bundle install
 sudo service mysql start
 rake db:create
 rake db:migrate
