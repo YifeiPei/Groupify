@@ -1,6 +1,6 @@
-sudo cp system_config/ubuntu_database.yml config/database.yml
+cp system_config/ubuntu_database.yml config/database.yml
 sudo bundle install
 sudo service mysql start
-sudo rake db:create
-sudo rake db:migrate
+rake db:create
+rake db:migrate
 echo "Done! Now you can run ./start_*.sh"
