@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: feedback_development
+  database: trunk_development
   pool: 5
   username: root
   password: 
@@ -23,7 +23,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: feedback_test
+  database: trunk_test
   pool: 5
   username: root
   password: 
@@ -33,7 +33,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: feedback_production
+  database: trunk_production
   pool: 5
   username: root
   password: 
