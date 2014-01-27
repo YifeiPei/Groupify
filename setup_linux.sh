@@ -1,4 +1,3 @@
-sudo rm config/database.yml
 sudo cp system_config/linux_database.yml config/database.yml
 sudo bundle install
 sudo mysql.server start
