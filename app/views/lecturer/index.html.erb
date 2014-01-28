@@ -44,8 +44,49 @@
         <!-- /.container -->
     </nav>
     
-    
-    
+    <!-- List of classes for this lecturer 
+    <table><tr><td>Class</td><td>Number of students</td><td>Grouped</td></tr>
+
+
+      <tr><td>Introduction to programming
+        </td><td>300</td><td>No</td></tr>
+
+      <tr><td>Programming in C/C++</td><td>230</td><td>No</td>
+      </tr>
+
+      <tr><td>Algorithms and data structures</td><td>270</td><td>Yes</td></tr>
+
+      </tr>
+
+    </table>
+
+    <!-- Button to add class 
+
+    <button name="Add_class" value="add_class" onclick="add_class">Add a class</button>
+    -->
+    <!-- List of courses this lecture teaches -->
+    <% if @courses != nil %>
+      <div>
+        <tr>
+          <th>Course</th>
+          <th>Number of students</th>
+          <th>Grouped</th>
+        </tr>
+
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.name %> </td>
+            <td> <%= course.size  %> </td>
+            <td> <%= course.grouped  %>   </td>
+          </tr>
+        <% end %>
+      </div>
+    <% else %>
+    <p>You currently have no classes in Groupify.</p>
+    <% end %>
+
+    <button name="add_course" value="add_course" onclick="window.location.href='/class/new'">Add a class</button>
+
       <footer>
 
             All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>

@@ -1,7 +1,8 @@
 Trunk::Application.routes.draw do
+  get "add_course/add_course"
   get "landing/thankyou"
   resources :landings
-	
+	resources :class
 
  
 
