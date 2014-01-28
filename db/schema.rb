@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122002238) do
+ActiveRecord::Schema.define(version: 20140128223844) do
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.string   "filelocation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "size"
+    t.boolean  "grouped"
+    t.string   "course_code"
+    t.integer  "semester"
+    t.integer  "year"
+  end
+
+  create_table "groups", force: true do |t|
+    t.integer  "size"
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "landings", force: true do |t|
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "gender"
+    t.integer  "age"
+    t.float    "GPA"
+    t.integer  "course_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140122002238) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
 
 end
