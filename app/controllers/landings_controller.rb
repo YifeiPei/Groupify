@@ -22,7 +22,6 @@ class LandingsController < ApplicationController
   # POST /landings.json
   def create
     @landing = Landing.new(landing_params)
-
     respond_to do |format|
       if @landing.save
         format.html { redirect_to @landing, notice: 'Email was successfully created.' }

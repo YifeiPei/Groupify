@@ -11,7 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../assets/stylesheets/bootstrap.css" rel="stylesheet">
-
+    <link href="../../../public/stylesheets/bootstrap.css" rel="stylesheet">
 
 </head>
 
@@ -30,27 +30,28 @@
             </div>
 
  	<div class="navbar-form navbar-right">
-<%= form_for(@landing) do |f| %>
-  <% if @landing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@landing.errors.count, "error") %> prohibited this landing from being saved:</h2>
-
-      <ul>
-      <% @landing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		<%= form_for(@landing) do |f| %>
+  			<% if @landing.errors.any? %>
+    			<div id="error_explanation">
+	      			<h2><%= pluralize(@landing.errors.count, "error") %> prohibited this landing from being saved:</h2>
+					<ul>
+      				<% @landing.errors.full_messages.each do |msg| %>
+        			<li><%= msg %></li>
+      		<% end %>
+      				</ul>
+    			</div>
+  			<% end %>
   
-  <div class="form-group">
-    <%= f.text_field :email, placeholder: 'Email', class: "form-control", size: "20" %>
+  	<div class="form-group">
+    	<%= f.text_field :email, placeholder: 'Email', class: "form-control", size: "20" %>
 	</div>
     <%= f.submit "Keep Update",:class => "btn btn-success" %>
+
 <% end %>
 
 <a href="/signup/signup" class = "btn btn-success" >Sign Up</a>   
 <a href="/login/login" class = "btn btn-success" >Log In</a>   
+
 
        </div>
             <!-- /.navbar-collapse -->
