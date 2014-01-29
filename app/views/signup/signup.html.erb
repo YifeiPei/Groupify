@@ -21,6 +21,7 @@
 
     <%= f.submit :Signup %>
   <% end %>
+  <button onclick="window.location.href='/'">Back</button>
 
   <% if @user.errors.any? %>
 	<ul class="Signup_Errors">
@@ -30,3 +31,4 @@
 	</ul>
   <% end %>
 </div>
+<%= debug(@user) %>

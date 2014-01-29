@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
-
 gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
 end
 gem 'protected_attributes'
+
+gem "bcrypt-ruby", :require => "bcrypt"
 
 gem 'devise', '3.0.0.rc'
 gem 'therubyracer'

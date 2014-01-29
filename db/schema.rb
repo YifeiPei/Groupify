@@ -13,6 +13,26 @@
 
 ActiveRecord::Schema.define(version: 20140129010418) do
 
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.string   "filelocation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "size"
+    t.boolean  "grouped"
+    t.string   "course_code"
+    t.integer  "semester"
+    t.integer  "year"
+  end
+
+  create_table "groups", force: true do |t|
+    t.integer  "size"
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "landings", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
@@ -23,11 +43,21 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.string   "username"
     t.string   "file"
     t.string   "file_id"
+  end
+  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
+
+  create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "gender"
+    t.integer  "age"
+    t.float    "GPA"
+    t.integer  "course_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -36,6 +66,6 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
-
 end

@@ -4,11 +4,18 @@ class LandingsController < ApplicationController
   def index
     @landing = Landing.new
   end
+  
+  def feedback
+  end
+  
+  def Thankyou
+  end
+
 
   # GET /landings/1
   # GET /landings/1.json
   def show
-	redirect_to root_path
+	render "feedback"
   end
 
   # POST /landings
@@ -17,7 +24,7 @@ class LandingsController < ApplicationController
     @landing = Landing.new(landing_params)
     respond_to do |format|
       if @landing.save
-        format.html { redirect_to @landing, notice: 'Landing was successfully created.' }
+        format.html { redirect_to @landing, notice: 'Email was successfully created.' }
         format.json { render action: 'index', status: :created, location: @landing }
       else
         format.html { render action: 'index' }

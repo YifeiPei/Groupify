@@ -1,10 +1,12 @@
 class UploadController < ApplicationController
-
+  def index
+  end
+  
   def upload_file
     if params[:file]
       @upload = Upload.new
       @upload.add_file(params[:file])
-      
+  
       @upload.username = 'bob'
       if @upload.save
         flash[:notice] = 'You uploaded ' + params[:file].original_filename
