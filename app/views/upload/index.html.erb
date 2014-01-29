@@ -1,0 +1,10 @@
+<h1>File Upload</h1>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<%= form_tag('/upload/upload_file', multipart: true) do %>
+
+<%= label_tag(:file) %>
+<%= file_field_tag(:file) %>
+<%= submit_tag 'Upload' %>
+<% end %>
