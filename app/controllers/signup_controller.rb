@@ -7,7 +7,6 @@ class SignupController < ApplicationController
 
    def create
     	@user = User.new(params[:signup])
-Rails.logger.debug("My object: #{@user.inspect}")
     	if @user.save
     		flash[:notice] = "You Signed up successfully"
         	flash[:color]= "valid"
