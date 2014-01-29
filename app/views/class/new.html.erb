@@ -1,0 +1,16 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= "new.html.erb" %>
+<h1>Please enter your course details:</h1>
+<%= form_for :course, url: {controller: "class", action: "create"} do |f| %>
+  <p>
+    <%= f.label 'Course name' %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
