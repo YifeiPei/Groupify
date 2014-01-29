@@ -2,13 +2,14 @@ class UploadController < ApplicationController
 
   def upload_file
     if params[:file]
-      directory = 'uploads'
-      path = File.join(directory, params[:file].original_filename)
-      if File.file?(path)
-        flash[:notice] = 'This file has already been uploaded. Please rename'
-      else
-        File.open(path, "wb") {|f| f.write(params[:file].read) }
+      @upload = Upload.new
+      @upload.add_file(params[:file])
+      
+      @upload.username = 'bob'
+      if @upload.save
         flash[:notice] = 'You uploaded ' + params[:file].original_filename
+      else
+        flash[:notice] = "An error occured"
       end
     else
       flash[:notice] = 'You did not give me anything'

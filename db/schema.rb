@@ -11,13 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122002238) do
+ActiveRecord::Schema.define(version: 20140129010418) do
 
   create_table "landings", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "uploads", force: true do |t|
+    t.string   "username"
+    t.string   "file"
+    t.string   "file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
