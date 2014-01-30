@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20140128223844) do
 
   create_table "courses", force: true do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "filelocation"
     t.datetime "created_at"
@@ -23,6 +24,11 @@ ActiveRecord::Schema.define(version: 20140128223844) do
     t.string   "course_code"
     t.integer  "semester"
     t.integer  "year"
+  end
+
+  create_table "data_files", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "groups", force: true do |t|
