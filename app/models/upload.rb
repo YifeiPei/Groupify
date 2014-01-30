@@ -11,6 +11,9 @@ class Upload < ActiveRecord::Base
 
   def store_file
     directory = 'uploads'
+    if !Dir.exist?(directory)
+      Dir.mkdir(directory)
+    end
     self[:file] = @upload.original_filename
     self[:file_id] = SecureRandom.uuid
 
