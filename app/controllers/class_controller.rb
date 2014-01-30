@@ -14,6 +14,7 @@ class ClassController < ApplicationController
   def create
     @course = Course.new do |c|
       c.name = params[:course][:name]
+      c.user_id = session[:user_id]
     end
     if @course.save
       flash[:notice] = "Course added."
