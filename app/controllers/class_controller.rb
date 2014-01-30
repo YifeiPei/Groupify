@@ -12,12 +12,14 @@ class ClassController < ApplicationController
   end
 
   def create
-    @course = Course.new(params[:course])
+    @course = Course.new do |c|
+      c.name = params[:course][:name]
+    end
     if @course.save
-      flash[:notice] = "Yay! The course saved."
+      flash[:notice] = "Course added."
       flash[:color] = "valid"
     else
-       flash[:notice] = "Not saved."
+       flash[:notice] = "Course not added."
        flash[:color] = "invalid"
     end
   end
