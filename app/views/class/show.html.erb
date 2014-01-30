@@ -45,8 +45,10 @@
     </nav>
 
 <h1> <%= @current_course.name %> </h1>
-<%= @student_list != nil %>
-
+<%  if @student_list != nil # Display list %>
+<% else %>
+<p> There are no student details uploaded for this course. </p>
+<% end %>
 
  <footer>
 
