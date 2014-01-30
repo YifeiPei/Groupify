@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Groupify</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -7,19 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if flash[:color]== "valid" %>
-		<div class="valid_notice">
-			<p><%= flash[:notice]%></p>
-		</div>
-	<% elsif flash[:color]== "invalid"%>
-		<div class="invalid_notice">
-			<p><%=flash[:notice]%></p>
-		</div>
-	<%else%>
-		<div class="notice">
-			<p><%=flash[:notice]%></p>
-		</div>
-	<%end%>
+
 <%= yield %>
 
 </body>
