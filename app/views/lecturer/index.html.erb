@@ -78,7 +78,7 @@
             
             @courses.each do |course| %>
               <tr>
-                <td><%= course.name %> </td>
+                <td><%= link_to course.name, controller: "class", action: "show", id: course.name %> </td>
                 
               </tr>
             <% end
