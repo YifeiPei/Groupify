@@ -67,19 +67,28 @@
     <!-- List of courses this lecture teaches -->
     <% if @courses != nil %>
       <div>
+        <table>
         <tr>
-          <th>Course</th>
+          <th>Course name</th>
           <th>Number of students</th>
           <th>Grouped</th>
         </tr>
-
-        <% @courses.each do |course| %>
-          <tr>
-            <td><%= course.name %> </td>
-            <td> <%= course.size  %> </td>
-            <td> <%= course.grouped  %>   </td>
-          </tr>
-        <% end %>
+       
+        <% if @courses.count > 1
+            
+            @courses.each do |course| %>
+              <tr>
+                <td><%= course.name %> </td>
+                
+              </tr>
+            <% end
+          else %>
+              <tr>
+                <td><%= @courses.name %> </td>
+                
+              </tr>
+          <% end %>
+        </table>
       </div>
     <% else %>
     <p>You currently have no classes in Groupify.</p>
