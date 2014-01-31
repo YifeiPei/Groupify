@@ -12,3 +12,6 @@
  *= require_tree .
  */
 
+.invalid_notice {
+	color: red;
+}
