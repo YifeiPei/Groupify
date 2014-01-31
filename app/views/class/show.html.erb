@@ -47,7 +47,13 @@
 <h1> <%= @current_course.name %> </h1>
 <%  if @student_list != nil # Display list %>
 <% else %>
-<p> There are no student details uploaded for this course. </p>
+  <p> There are no student details uploaded for this course. </p>
+  <%= form_tag('/upload/upload_file', multipart: true) do %>
+
+    <%= label_tag(:file) %>
+    <%= file_field_tag(:file) %>
+    <%= submit_tag 'Upload' %>
+  <% end %>
 <% end %>
 
  <footer>
