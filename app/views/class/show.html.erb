@@ -59,6 +59,11 @@
   </tr>
   <% end %>
 </table>
+<%= form_tag('/sort/index') do %>
+
+    
+    <%= submit_tag 'Sort' %>
+<% end %>
 <% else %>
   <p> There are no student details uploaded for this course. </p>
   <%= form_tag('/upload/upload_file', multipart: true) do %>
