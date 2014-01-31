@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-  attr_accessor :username
+  attr_accessor :username, :file_id
 
   validates :username, presence: true
   belongs_to :user
@@ -16,7 +16,7 @@ class Upload < ActiveRecord::Base
     end
     self[:file] = @upload.original_filename
     self[:file_id] = SecureRandom.uuid
-
+    #@upload.file_id = self[:file_id]
     path = File.join(directory, self[:file_id])
 
     if File.file?(path)

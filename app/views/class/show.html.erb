@@ -46,6 +46,21 @@
 
 <h1> <%= @current_course.name %> </h1>
 <%  if @student_list != nil # Display list %>
+<table>
+  <tr>
+    <th>Student number</th>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+  <% @student_list.each do |student| %>
+  <tr>
+    <td> <%= student.student_number %> </td>
+    <td> <%= student.name %>  </td>
+    <td> <%= student.score %>  </td>
+  </tr>
+  <% end %>
+</table>
 <% else %>
   <p> There are no student details uploaded for this course. </p>
   <%= form_tag('/upload/upload_file', multipart: true) do %>

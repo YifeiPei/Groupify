@@ -9,7 +9,7 @@ class UploadController < ApplicationController
   
       @upload.username = 'bob'
       if @upload.save
-        flash[:notice] = 'You uploaded ' + params[:file].original_filename
+        flash[:notice] = 'You uploaded ' + params[:file].original_filename #+ @upload.file_id
       else
         flash[:notice] = "An error occured"
       end

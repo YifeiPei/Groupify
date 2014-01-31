@@ -26,7 +26,7 @@ class ClassController < ApplicationController
   end
 
   def show
-     @current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
+    @current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
     #flash[:notice] = @current_course.inspect
 
     # Load csv file and create list of students
@@ -35,14 +35,15 @@ class ClassController < ApplicationController
 
     if @current_course.filelocation != nil
       # Parse file into list of students
-     # @student_list = []
-     # CSV.foreach(@current_course.filelocation) do |row|
-     #   student = Student.new (row[0], row[1], row[2])
-     #   @student_list << student
-     # end
-    #else
-    #  @student_list = nil
+      @student_list = []
+      CSV.foreach(@current_course.filelocation) do |row|
+        #student = Student.new (row[0], row[1], row[2])
+        #@student_list << student
+      end
+    else
+      @student_list = nil
     end
+    #render 'show'
   #end
   end
 
