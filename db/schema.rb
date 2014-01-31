@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128223844) do
+ActiveRecord::Schema.define(version: 20140129010418) do
 
   create_table "courses", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 20140128223844) do
     t.datetime "updated_at"
   end
 
+  create_table "uploads", force: true do |t|
+    t.string   "username"
+    t.string   "file"
+    t.string   "file_id"
+  end
+  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
+
   create_table "students", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -57,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140128223844) do
     t.datetime "updated_at"
   end
 
+
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
@@ -66,5 +74,4 @@ ActiveRecord::Schema.define(version: 20140128223844) do
     t.datetime "updated_at"
     t.integer  "course_id"
   end
-
 end

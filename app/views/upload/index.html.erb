@@ -43,9 +43,14 @@
         </div>
         <!-- /.container -->
     </nav>
-<%= form_for :file_upload, :html => {:multipart => true} do |f| %>
-  <%= f.file_field :my_file %>
-  <%= f.submit "Upload" %>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<%= form_tag('/upload/upload_file', multipart: true) do %>
+
+<%= label_tag(:file) %>
+<%= file_field_tag(:file) %>
+<%= submit_tag 'Upload' %>
 <% end %>
     
     
