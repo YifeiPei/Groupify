@@ -1,3 +1,5 @@
+require 'csv'
+
 class ClassController < ApplicationController
   def index
 
@@ -33,18 +35,21 @@ class ClassController < ApplicationController
     # Retrieve file from db, this depends on the upload file implementation
     # and will be written once that has been merged in.
 
-    if @current_course.filelocation != nil
+   # if @current_course.filelocation != nil
       # Parse file into list of students
       @student_list = []
-      CSV.foreach(@current_course.filelocation) do |row|
+      #CSV.foreach(@current_course.filelocation) do |row|
+      CSV.foreach("/uploads/STEM.csv") do |row|
+        @student_list << row
+        #flash[:notice] = "row" + row[0] + row [1] + row[2]
         #student = Student.new (row[0], row[1], row[2])
         #@student_list << student
       end
-    else
-      @student_list = nil
-    end
+    #else
+     # @student_list = nil
+    #end
     #render 'show'
-  #end
+  
   end
 
 end
