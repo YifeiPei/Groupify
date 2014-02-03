@@ -1,1 +1,1 @@
-rvmsudo rails server -e test -d
+rails server -e test -d
