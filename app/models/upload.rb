@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-  attr_accessor :username, :file_id
+  attr_accessor :username
 
   validates :username, presence: true
   belongs_to :user

@@ -30,7 +30,7 @@ class ClassController < ApplicationController
   def show
     @current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
     #flash[:notice] = @current_course.inspect
-
+	session[:course_id] = @current_course.id
     # Load csv file and create list of students
     # Retrieve file from db, this depends on the upload file implementation
     # and will be written once that has been merged in.
