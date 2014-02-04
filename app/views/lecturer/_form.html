@@ -1,0 +1,6 @@
+<%= form_for :course, {url: {controller: "class", action: "create"}, html: {role: "form"}} do |f| %>
+    <%= f.text_field :name %>
+    <%= f.label :start, "Start" %><%= f.text_field :start %>
+    <%= f.label :end, "End" %><%= f.text_field :end %>
+    <%= f.submit %>
+<% end %>

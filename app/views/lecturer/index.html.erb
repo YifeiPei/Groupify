@@ -21,10 +21,9 @@
           </tr>
         <% end %>
     <% end %>
-      <tr>
-        <td colspan="5">
-          <%= button_tag("Add a class", {class: "btn btn-default", id: "add_class"}) %>
-
-        <%= button_tag("Add a class", {class: "btn btn-default", onclick: "window.location.href='/class/new'"}) %></td></tr>
     </table>
+    <div id="add_class">
+      <%= button_to("Add a class", '/lecturer', {class: "btn btn-default", id: "add_class", remote: true}) %>
+
+    </div>
 </div>
