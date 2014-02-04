@@ -39,7 +39,7 @@ class ClassController < ApplicationController
       # Parse file into list of students
       @student_list = []
       #CSV.foreach(@current_course.filelocation) do |row|
-      CSV.foreach("/uploads/STEM.csv") do |row|
+      CSV.foreach("/uploads/STEM.csv", :headers => 'true') do |row|
         @student_list << row
         #flash[:notice] = "row" + row[0] + row [1] + row[2]
         #student = Student.new (row[0], row[1], row[2])

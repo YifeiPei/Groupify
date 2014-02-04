@@ -45,25 +45,39 @@
     </nav>
 
 <h1> <%= @current_course.name %> </h1>
+
+<% if @current_course.year != nil %>
+  <h3><%= @current_course.year %></h3>
+  <h4><%= @current_course.semester %>  </h4>
+<% end %>
+
+
+
+<%= form_tag('/sort/index') do %>
+  <%= submit_tag 'Sort' %>
+<% end %>
+<%= form_tag() do %>
+  <%= submit_tag 'Contact' %>
+<% end %>
 <%  if @student_list != nil # Display list %>
 <table>
   <tr>
-    <th>Student number</th>
-    <th>Name</th>
-    <th>Score</th>
+    <%  @student_list[0].each do |col| %>>
+    <th><%= col %> </th>
+    <% end %>
   </tr>
 
-  <% @student_list.each do |student| %>
-  <tr>
-    <td> <%= student %> </td>
-  </tr>
+  <% @student_list.each_with_index do |student, index| %>
+    <% if index != 0 %>
+      <tr>
+        <% student.each do |data| %>
+        <td> <%= data %> </td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
 </table>
-<%= form_tag('/sort/index') do %>
 
-    
-    <%= submit_tag 'Sort' %>
-<% end %>
 <% else %>
   <p> There are no student details uploaded for this course. </p>
   <%= form_tag('/upload/upload_file', multipart: true) do %>
