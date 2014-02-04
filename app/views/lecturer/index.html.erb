@@ -1,90 +1,30 @@
-<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Groupify</a>
-        </div>
-
-<div class="navbar-form navbar-left">
-<button onclick="window.location.href='/lecturer'" class = "btn btn-success">Home</button>
-<button onclick="window.location.href='/class'" class = "btn btn-success">Classes</button>
-<button onclick="window.location.href='/upload'" class = "btn btn-success">Upload Students</button>
-
-   </div>
-<div class="navbar-form navbar-right">
-<button onclick="window.location.href='/'" class = "btn btn-success">Log Out</button>
-   </div>
-
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
 <div class="container">
-    <!-- List of classes for this lecturer 
-    <table><tr><td>Class</td><td>Number of students</td><td>Grouped</td></tr>
+  <!-- List of courses this lecture teaches -->
+  <h1>Classes</h1>
+    <table class="table">
+    <tr>
+      <th>Course name</th>
+      <th>Number of students</th>
+      <th>Study Period</th>
+      <th>Grouped</th>
+      <th>Tools</th>
+    </tr>
 
-
-      <tr><td>Introduction to programming
-        </td><td>300</td><td>No</td></tr>
-
-      <tr><td>Programming in C/C++</td><td>230</td><td>No</td>
-      </tr>
-
-      <tr><td>Algorithms and data structures</td><td>270</td><td>Yes</td></tr>
-
-      </tr>
-
-    </table>
-
-    <!-- Button to add class 
-
-    <button name="Add_class" value="add_class" onclick="add_class">Add a class</button>
-    -->
-    <!-- List of courses this lecture teaches -->
-    <% if @courses != nil %>
-      <div>
-        <table>
-        <tr>
-          <th>Course name</th>
-          <th>Number of students</th>
-          <th>Grouped</th>
-        </tr>
-       
-        <% if @courses.count > 1
-            
-            @courses.each do |course| %>
-              <tr>
-                <td><%= link_to course.name, controller: "class", action: "show", id: course.name %> </td>
-                
-              </tr>
-            <% end
-          else %>
-              <tr>
-                <td><%= @courses.name %> </td>
-                
-              </tr>
-          <% end %>
-        </table>
-      </div>
-    <% else %>
-    <p>You currently have no classes in Groupify.</p>
+  <% if @courses != nil && @courses.count > 0 %>
+       <% @courses.each do |course| %>
+          <tr>
+            <td><%= link_to course.name, controller: "class", action: "show", id: course.name %></td>
+            <td>100</td>
+            <td>1 Jan 1991 - 2 Jan 1991</td>
+            <td>No</td>
+            <td></td>
+          </tr>
+        <% end %>
     <% end %>
+      <tr>
+        <td colspan="5">
+          <%= button_tag("Add a class", {class: "btn btn-default", id: "add_class"}) %>
 
-    <button name="add_course" value="add_course" onclick="window.location.href='/class/new'">Add a class</button>
-
-      <footer>
-
-            All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
-            <p>Copyright &copy; Groupify Pty Ltd 2013</p>
-        </footer>
-        <!-- /END OF FOOTER -->
-
-    </div>
-    <!-- /container -->
+        <%= button_tag("Add a class", {class: "btn btn-default", onclick: "window.location.href='/class/new'"}) %></td></tr>
+    </table>
 </div>
