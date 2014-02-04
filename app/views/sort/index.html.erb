@@ -43,9 +43,37 @@
         </div>
         <!-- /.container -->
     </nav>
-    
-    
-    
+
+<h1> <%= Course.find_by(id: session[:course_id]).name %> </h1>
+
+<% unless Course.find_by(id: session[:course_id]).grouped.blank? %>
+<p>
+Your students has already been grouped. Doing this will reset the existing sorted groups.
+</p>
+
+<% end %>
+
+<br />
+<%= form_for :sort, url: {controller: "sort", action: "save_config"} do |f| %>
+
+<%= field_set_tag 'Algorithm:' do %>
+	<%= radio_button_tag(:algorithm, "0") %>
+	<%= label_tag(:random, "Random") %>
+	<%= radio_button_tag(:algorithm, "1") %>
+	<%= label_tag(:EP, "EP") %>
+<% end %>
+<br /> <br />
+<%= field_set_tag 'Criteria:' do %>
+	<%= check_box_tag(:age) %>
+	<%= label_tag(:age, "Age") %>
+	<%= check_box_tag(:gpa) %>
+	<%= label_tag(:gpa, "GPA") %>
+	<%= check_box_tag(:degree) %>
+	<%= label_tag(:degree, "Degree") %>
+<% end %>
+ <br />
+     <%= f.submit "Start Sort" %>
+<% end %>
       <footer>
 
             All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
