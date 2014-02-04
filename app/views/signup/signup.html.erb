@@ -1,7 +1,22 @@
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Groupify</a>
+    </div>
+  </div><!-- /.container -->
+</nav>
+
+<div class="container text-center">
 <% @page_title = "Groupify | Signup" -%>
 <div class= "Sign_Form">
   <h1>Sign Up</h1>
-  <%= form_for(:signup, :url => {:controller => 'signup', :action => 'create'}) do |f| %>
+  <%= form_for(:signup, :class => "form-horizontal", :url => {:controller => 'signup', :action => 'create'}) do |f| %>
 
     <p>          
       Username:</br> <%= f.text_field :username%>
@@ -19,10 +34,9 @@
       Password Confirmation:</br> <%= f.password_field :password_confirmation%>
     </p>
 
-    <%= f.submit :Signup %>
+    <%= f.submit :Signup, :class => "btn btn-success"%>
   <% end %>
-  <button onclick="window.location.href='/'">Back</button>
-
+  <button onclick="window.location.href='/'" class="btn btn-success">Back</button>
   <% if @user.errors.any? %>
 	<ul class="Signup_Errors">
 		<% for message_error in @user.errors.full_messages %>
@@ -30,4 +44,5 @@
 	  	<% end %>
 	</ul>
   <% end %>
+</div>
 </div>
