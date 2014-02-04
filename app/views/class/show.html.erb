@@ -59,19 +59,23 @@
 <%= form_tag() do %>
   <%= submit_tag 'Contact' %>
 <% end %>
+
 <%  if @student_list != nil # Display list %>
 <table>
-  <tr>
-    <%  @student_list[0].each do |col| %>>
-    <th><%= col %> </th>
-    <% end %>
-  </tr>
+ 
 
   <% @student_list.each_with_index do |student, index| %>
-    <% if index != 0 %>
+    <% if index == 0 %>
+      <tr>
+        <%  student.each do |col| %>>
+          <th><%= col[1] %> </th>
+        <% end %>
+      </tr>
+
+    <% elsif index != 0 %>
       <tr>
         <% student.each do |data| %>
-        <td> <%= data %> </td>
+        <td> <%= data[1] %> </td>
         <% end %>
       </tr>
     <% end %>
