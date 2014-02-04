@@ -49,19 +49,27 @@
 <% if @current_course.year != nil %>
   <h3><%= @current_course.year %></h3>
   <h4><%= @current_course.semester %>  </h4>
+<% else %>
+  <h3> 2014 </h3>
+  <h4> Semester 1 </h4>
 <% end %>
 
-
-
-<%= form_tag('/sort/index') do %>
-  <%= submit_tag 'Sort' %>
-<% end %>
-<%= form_tag() do %>
-  <%= submit_tag 'Contact' %>
-<% end %>
-
+  <div class="row">
+    <div class="col-md-1"
+    <%= form_tag('/sort/index') do %>
+      <%= submit_tag 'Group', class: "btn" %>
+    <% end %>
+  </div>
+    <div class="col-md-1"
+    <%= form_tag() do %>
+      <%= submit_tag 'Contact', class: "btn" %>
+    <% end %>
+  </div>
+  
+  </div>
+  </br>
 <%  if @student_list != nil # Display list %>
-<table>
+<table class="table">
  
 
   <% @student_list.each_with_index do |student, index| %>
