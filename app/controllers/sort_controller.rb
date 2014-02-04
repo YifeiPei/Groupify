@@ -20,10 +20,10 @@ class SortController < ApplicationController
     	end
     	
     	if @sort_config.save
-      	flash[:notice] = "Course added."
+      	flash[:notice] = "Configuration saved."
       	flash[:color] = "valid"
     	else
-       	flash[:notice] = "Course not added."
+       	flash[:notice] = "Configuration not saved."
        	flash[:color] = "invalid"
     	end
     else
