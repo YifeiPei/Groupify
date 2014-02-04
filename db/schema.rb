@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129010418) do
+ActiveRecord::Schema.define(version: 20140203232048) do
 
   create_table "courses", force: true do |t|
-    t.integer  "user_id"
     t.string   "name"
     t.string   "filelocation"
     t.datetime "created_at"
@@ -24,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.string   "course_code"
     t.integer  "semester"
     t.integer  "year"
+    t.integer  "user_id"
   end
 
   create_table "data_files", force: true do |t|
@@ -45,12 +45,15 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.datetime "updated_at"
   end
 
-  create_table "uploads", force: true do |t|
-    t.string   "username"
-    t.string   "file"
-    t.string   "file_id"
+  create_table "sort_configs", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "algorithm"
+    t.boolean  "age"
+    t.boolean  "gpa"
+    t.boolean  "degree"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
 
   create_table "students", force: true do |t|
     t.string   "name"
@@ -64,6 +67,15 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.datetime "updated_at"
   end
 
+  create_table "uploads", force: true do |t|
+    t.string   "username"
+    t.string   "file"
+    t.string   "file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "uploads", ["file_id"], name: "index_uploads_on_file_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -74,4 +86,5 @@ ActiveRecord::Schema.define(version: 20140129010418) do
     t.datetime "updated_at"
     t.integer  "course_id"
   end
+
 end
