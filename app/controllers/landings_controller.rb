@@ -1,4 +1,7 @@
 class LandingsController < ApplicationController
+ before_filter   :authenticate_user, :except => [:index,:login,:signup]
+
+ 
   # GET /landings
   # GET /landings.json
   def index

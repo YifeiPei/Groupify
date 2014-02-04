@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+before_filter   :authenticate_user, :except => [:login,:signup]
+before_filter :save_login_state, :only => [:login,:signup]
   protect_from_forgery with: :exception
   protected
   def authenticate_user
@@ -14,6 +16,7 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+
   #This method for prevent user to access Signup & Login Page without logout
   def save_login_state
     if session[:user_id]
@@ -23,4 +26,6 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+  	
+
 end
