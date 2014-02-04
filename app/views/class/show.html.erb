@@ -67,15 +67,15 @@
   <% @student_list.each_with_index do |student, index| %>
     <% if index == 0 %>
       <tr>
-        <%  student.each do |col| %>>
-          <th><%= col[1] %> </th>
+        <%  student.each do |col| %>
+          <th><%= col %> </th>
         <% end %>
       </tr>
 
     <% elsif index != 0 %>
       <tr>
         <% student.each do |data| %>
-        <td> <%= data[1] %> </td>
+        <td> <%= data %> </td>
         <% end %>
       </tr>
     <% end %>
