@@ -25,6 +25,7 @@ class ClassController < ApplicationController
        flash[:notice] = "Course not added."
        flash[:color] = "invalid"
     end
+	redirect_to "/lecturer"
   end
 
   def show
