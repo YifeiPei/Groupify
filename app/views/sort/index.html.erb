@@ -9,8 +9,13 @@ Your students have already been grouped. Doing this will reset the existing sort
 <% end %>
 
 <br />
-<%= form_for :sort, url: {controller: "sort", action: "save_config"} do |f| %>
+<%= form_for :sort, url: {controller: "sort", action: "save_config"} do %>
 
+<%= field_set_tag 'General:' do %>
+	<%= label_tag(:group_size, "Group Size") %>
+	<%= number_field_tag 'group_size', nil, in: 1...10 %>
+<% end %>
+<br /> <br />
 <%= field_set_tag 'Algorithm:' do %>
 	<%= radio_button_tag(:algorithm, "0") %>
 	<%= label_tag(:random, "Random") %>
@@ -27,6 +32,6 @@ Your students have already been grouped. Doing this will reset the existing sort
 	<%= label_tag(:degree, "Degree") %>
 <% end %>
  <br />
-     <%= f.submit "Start Sort" %>
+     <%= submit_tag "Start Sort" %>
 <% end %>
 </div>
