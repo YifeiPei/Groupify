@@ -43,27 +43,53 @@
         </div>
         <!-- /.container -->
     </nav>
-
+<div class="container">
 <h1> <%= @current_course.name %> </h1>
-<%  if @student_list != nil # Display list %>
-<table>
-  <tr>
-    <th>Student number</th>
-    <th>Name</th>
-    <th>Score</th>
-  </tr>
 
-  <% @student_list.each do |student| %>
-  <tr>
-    <td> <%= student %> </td>
-  </tr>
+<% if @current_course.year != nil %>
+  <h3><%= @current_course.year %></h3>
+  <h4><%= @current_course.semester %>  </h4>
+<% else %>
+  <h3> 2014 </h3>
+  <h4> Semester 1 </h4>
+<% end %>
+
+  <div class="row">
+    <div class="col-md-1"
+    <%= form_tag('/sort/index') do %>
+      <%= submit_tag 'Group', class: "btn" %>
+    <% end %>
+  </div>
+    <div class="col-md-1"
+    <%= form_tag() do %>
+      <%= submit_tag 'Contact', class: "btn" %>
+    <% end %>
+  </div>
+  
+  </div>
+  </br>
+<%  if @student_list != nil # Display list %>
+<table class="table">
+ 
+
+  <% @student_list.each_with_index do |student, index| %>
+    <% if index == 0 %>
+      <tr>
+        <%  student.each do |col| %>
+          <th><%= col %> </th>
+        <% end %>
+      </tr>
+
+    <% elsif index != 0 %>
+      <tr>
+        <% student.each do |data| %>
+        <td> <%= data %> </td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
 </table>
-<%= form_tag('/sort/index') do %>
 
-    
-    <%= submit_tag 'Sort' %>
-<% end %>
 <% else %>
   <p> There are no student details uploaded for this course. </p>
   <%= form_tag('/upload/upload_file', multipart: true) do %>
@@ -73,7 +99,7 @@
     <%= submit_tag 'Upload' %>
   <% end %>
 <% end %>
-
+</div>
  <footer>
 
             All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
