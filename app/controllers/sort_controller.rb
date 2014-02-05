@@ -19,7 +19,8 @@ class SortController < ApplicationController
       	sc.age = params[:age]
       	sc.gpa = params[:gpa]
       	sc.degree = params[:degree]
-    	end
+       	sc.group_size = params[:group_size]
+	   	end
     	
     	if @sort_config.save
       	flash[:notice] = "Configuration saved."
