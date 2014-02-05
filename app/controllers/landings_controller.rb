@@ -1,4 +1,6 @@
 class LandingsController < ApplicationController
+  skip_before_filter :authenticate_user
+ 
   # GET /landings
   # GET /landings.json
   def index
