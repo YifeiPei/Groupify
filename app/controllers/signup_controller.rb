@@ -1,6 +1,6 @@
 class SignupController < ApplicationController
   skip_before_filter :authenticate_user
-
+	before_filter :save_login_state
   def signup
       @user = User.new     
 

@@ -1,6 +1,6 @@
 class LoginController < ApplicationController
   skip_before_filter :authenticate_user
-
+before_filter :save_login_state
   def login
   end
   	def login_attempt

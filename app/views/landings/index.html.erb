@@ -27,9 +27,15 @@
         </div>
         <%= f.submit "Keep Update",:class => "btn btn-success" %>
       <% end %>
+     <% if session[:user_id] == nil %>
       <a href="/signup/signup" class = "btn btn-success" >Sign Up</a>
       <a href="/login/login" class = "btn btn-success" >Log In</a>   
-    </div> <!-- /.navbar-collapse -->
+   		<% else %>
+      <a href="/lecturer" class = "btn btn-success" >Lecturer Home</a>
+   		
+   		<% end %>
+   		
+   	</div> <!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
 
