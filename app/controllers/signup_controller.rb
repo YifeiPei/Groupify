@@ -16,7 +16,7 @@ class SignupController < ApplicationController
       else
         flash[:notice] = "Form is invalid"
         flash[:color]= "invalid"
-      render "signup"
+       render "signup"
       end
     end
 end
