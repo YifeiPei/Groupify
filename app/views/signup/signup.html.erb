@@ -16,7 +16,7 @@
 <% @page_title = "Groupify | Signup" -%>
 <div class= "Sign_Form">
   <h1>Sign Up</h1>
-  <%= form_for(:signup, :class => "form-horizontal", :url => {:controller => 'signup', :action => 'create'}) do |f| %>
+  <%= form_for(:signup, :url => {:controller => 'signup', :action => 'create'}) do |f| %>
 
     <p>          
       Username:</br> <%= f.text_field :username%>
@@ -33,10 +33,9 @@
     <p>     
       Password Confirmation:</br> <%= f.password_field :password_confirmation%>
     </p>
-
-    <%= f.submit :Signup, :class => "btn btn-success"%>
+ 	<%= f.submit :Signup, :class => "btn" %>
+      <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/'", type: 'button'}) %>
   <% end %>
-  <button onclick="window.location.href='/'" class="btn btn-success">Back</button>
   <% if @user.errors.any? %>
 	<ul class="Signup_Errors">
 		<% for message_error in @user.errors.full_messages %>
@@ -46,3 +45,7 @@
   <% end %>
 </div>
 </div>
+  <footer>
+
+        <p>Copyright &copy; Groupify Pty Ltd 2013</p>
+    </footer>

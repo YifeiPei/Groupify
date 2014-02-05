@@ -10,10 +10,11 @@ class SignupController < ApplicationController
     	if @user.save
     		flash[:notice] = "You Signed up successfully"
         	flash[:color]= "valid"
+			redirect_to "/lecturer"
       else
         flash[:notice] = "Form is invalid"
         flash[:color]= "invalid"
+       render "signup"
       end
-      render "signup"
     end
 end
