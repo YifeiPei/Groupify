@@ -1,6 +1,8 @@
 require 'csv'
 
-class ClassController < ApplicationController
+class ClassController < LecturerApplicationController
+  layout 'lecturer_application'
+  
   def index
 
   end

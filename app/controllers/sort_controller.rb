@@ -1,4 +1,6 @@
 class SortController < ApplicationController
+  layout 'lecturer_application'
+  
   def index
     @current_course = Course.find_by(id: session[:course_id])
     @sort = {}

@@ -31,9 +31,11 @@
   <ul class="dropdown-menu" role="menu">
     <li><a href="#" onclick="window.location.href='/lecturer'">Classes</a></li>
     <li class="divider"></li>
-    <li><a href="#">Fishing</a></li>
-    <li><a href="#">Typing</a></li>
-    <li><a href="#">Being Awesome</a></li>
+     <% if @courses != nil && @courses.count > 0 %>
+       <% @courses.each do |course| %>
+        <li><%= link_to course.name, controller: "class", action: "show", id: course.name %></li>
+       <% end %>
+    <% end %>
   </ul>
 </div>
 
