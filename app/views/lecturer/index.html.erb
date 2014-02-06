@@ -18,7 +18,7 @@
           <tr>
             <td><%= link_to course.name, controller: "class", action: "show", id: course.name %></td>
             <td>100</td>
-            <td>1 Jan 1991 - 2 Jan 1991</td>
+            <td>Semester 1, 2014</td>
             <td>No</td>
             <td><%= link_to "Delete", {controller: "lecturer", action: "delete" , id: course.name}, {data:{confirm: "You have students in this class. \nAre you sure you want to delete #{course.name}?"}} %> <a href="#">Edit</a></td>
           </tr>
