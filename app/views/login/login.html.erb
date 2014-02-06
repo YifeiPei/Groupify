@@ -1,15 +1,52 @@
-<% @page_title = "Groupify | Login" -%>
-<div class= "Sign_Form">
-	<h1>Log in</h1>
-	<%= form_tag(:action => 'login_attempt') do %>
-		<p>
-		Username or Email:</br> <%= text_field_tag(:username_or_email) %>
-		</p> 
-		
-		<p>
-		Password:</br> <%= password_field_tag :login_password %>
-		</p> 
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Groupify</a>
+    </div>
+  </div><!-- /.container -->
+</nav>
 
-		<%= submit_tag("Log In") %>
-	<% end %>
+<div class="container text-center">
+    <h1>Log in</h1>
+  <% @page_title = "Groupify | Login" -%>
+  <div class= "Sign_Form">
+
+    <%= form_tag(:action => 'login_attempt') do %>
+      <p>
+      Username or Email:</br> <%= text_field_tag(:username_or_email) %>
+      </p> 
+      
+      <p>
+      Password:</br> <%= password_field_tag :login_password %>
+      </p> 
+
+  <% if flash[:color]== "valid" %>
+    <div class="valid_notice">
+      <p><%= flash[:notice]%></p>
+    </div>
+  <% elsif flash[:color]== "invalid"%>
+    <div class="invalid_notice">
+      <p><%=flash[:notice]%></p>
+    </div>
+  <%else%>
+    <div class="notice">
+      <p><%=flash[:notice]%></p>
+    </div>
+  <%end%>
+
+      <%= submit_tag("Log In", class: "btn") %>
+      <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/'", type: 'button'}) %>
+    <% end %>
+
+  </div>
 </div>
+  <footer>
+
+        <p>Copyright &copy; Groupify Pty Ltd 2013</p>
+    </footer>

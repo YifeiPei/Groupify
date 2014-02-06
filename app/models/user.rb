@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+	has_many :courses
+	
   attr_accessor :password
 
   before_save :encrypt_password
@@ -13,6 +14,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :in => 6..20, :on => :create
 
   attr_accessible :username, :email, :password, :password_confirmation
+  has_many :uploads
 
 
   def self.authenticate(username_or_email="", login_password="")
