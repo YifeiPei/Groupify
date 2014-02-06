@@ -21,7 +21,7 @@ class ClassController < LecturerApplicationController
       c.user_id = session[:user_id]
     end
     if @course.save
-      flash[:notice] = "Course added."
+    #  flash[:notice] = "Course added."
       flash[:color] = "valid"
     else
        flash[:notice] = "Course not added."
