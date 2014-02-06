@@ -12,14 +12,19 @@
   <div class="row">
     <div class="col-md-1" >
     <%= form_tag('/sort/index') do %>
-      <%= submit_tag 'Group', class: "btn" %>
+      <%= submit_tag 'Sort', class: "btn" %>
     <% end %>
-  </div>
+  	</div>
+    <div class="col-md-2" >
+    <%= form_tag('/grouped') do %>
+      <%= submit_tag 'View Sorted', class: "btn" %>
+    <% end %>
+  	</div>
     <div class="col-md-1" >
     <%= form_tag() do %>
       <%= submit_tag 'Contact', class: "btn" %>
     <% end %>
-  </div>
+  	</div>
   
   </div>
   </br>
