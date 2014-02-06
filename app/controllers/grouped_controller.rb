@@ -1,3 +1,5 @@
+require 'csv'
+
 class GroupedController < LecturerApplicationController
   layout 'lecturer_application'
   def index
