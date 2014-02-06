@@ -27,7 +27,7 @@ $(function() {
       <thead>
         <tr>
 
-          <% for j in 0...@display %>
+          <% for j in @start_column..@end_column %>
             <th><%= @header[j] %></th>
           <% end %>
         </tr>
@@ -35,7 +35,7 @@ $(function() {
       <tbody>
         <% @student_list[i-1].each do |student| %>
           <tr>
-            <% for j in 0...@display %>
+            <% for j in @start_column..@end_column %>
               <td><%= student[j] %></td>
             <% end %>
           </tr>
