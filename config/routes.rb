@@ -1,6 +1,16 @@
 Trunk::Application.routes.draw do
+  get 'class/sorted'
+  get "add_course/add_course"
+  get "landing/thankyou"
   resources :landings
+	resources :class
 
+ 
+  get ':controller(/:action(/:id))(.:format)'
+	post ':controller(/:action(/:id(.:format)))'
+	
+   root :to => 'landings#index'
+  get "upload/index"
   get "login/login"
   get "signup/signup"
 
@@ -13,17 +23,13 @@ Trunk::Application.routes.draw do
   get "signup", :to => "signup#signup"
   get "login", :to => "login#login"
   get "home", :to => "lecturer#index"
- 
-
-  get ':controller(/:action(/:id))(.:format)'
-	post ':controller(/:action(/:id(.:format)))'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root :to => 'landings#index'
+   
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

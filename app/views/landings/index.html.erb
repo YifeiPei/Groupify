@@ -1,123 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Groupify</a>
+    </div>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <div class="navbar-form navbar-right">
+      <%= form_for(@landing) do |f| %>
+        <% if @landing.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@landing.errors.count, "error") %> prohibited this landing from being saved:</h2>
+            <ul>
+            <% @landing.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.text_field :email, placeholder: 'Email', class: "form-control", size: "20" %>
+        </div>
+        <%= f.submit "Keep Update",:class => "btn btn-success" %>
+      <% end %>
+     <% if session[:user_id] == nil %>
+      <a href="/signup/signup" class = "btn btn-success" >Sign Up</a>
+      <a href="/login/login" class = "btn btn-success" >Log In</a>   
+   		<% else %>
+      <a href="/lecturer" class = "btn btn-success" >Lecturer Home</a>
+   		
+   		<% end %>
+   		
+   	</div> <!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>
 
-    <title>Groupify</title>
+<div class="header-image">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../assets/stylesheets/bootstrap.css" rel="stylesheet">
-    <link href="../../../public/stylesheets/bootstrap.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="headline">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Groupify</a>
-            </div>
-
- 	<div class="navbar-form navbar-right">
-		<%= form_for(@landing) do |f| %>
-  			<% if @landing.errors.any? %>
-    			<div id="error_explanation">
-	      			<h2><%= pluralize(@landing.errors.count, "error") %> prohibited this landing from being saved:</h2>
-					<ul>
-      				<% @landing.errors.full_messages.each do |msg| %>
-        			<li><%= msg %></li>
-      		<% end %>
-      				</ul>
-    			</div>
-  			<% end %>
-  
-  	<div class="form-group">
-    	<%= f.text_field :email, placeholder: 'Email', class: "form-control", size: "20" %>
-	</div>
-    <%= f.submit "Keep Update",:class => "btn btn-success" %>
-	<% end %>
-       </div>
-            <!-- /.navbar-collapse -->
+            <h1>Effective Education</h1>
+            <h2>Creating The Best Teams</h2>
         </div>
-        <!-- /.container -->
-    </nav>
-
-    <div class="header-image">
-
-        <div class="headline">
-            <div class="container">
-                <h1>Effective Education</h1>
-                <h2>Creating The Best Teams</h2>
-            </div>
-        </div>
-
     </div>
-    <!-- /header-image -->
 
-    <div class="container">
+</div>
+<!-- /header-image -->
 
-        <!-- START THE FEATURETTES -->
+<div class="container">
 
-        <hr class="featurette-divider">
+    <!-- START THE FEATURETTES -->
 
-        <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="/images/8424476075_8e33ab63fc_o.jpg">
-            <h2 class="featurette-heading">Save Yourself The Headache
-                <span class="text-muted">Let Us Do The Sorting.</span>
-            </h2>
-            <p class="lead">We want you to have full control of how your students are sorted. So we give you the power to specify what criteria to sort by and the priority of each. We provide the most relevant criteria to choose from, you can include as many or as few as you wish. Your options include having the students nominate the times they are available; using past academic results; awareness of cultural background; and field of degree specialisation. We value your feedback! So if there are other criteria that you use to sort your students that you would like us to include, please let us know!</p>
-        </div>
+    <hr class="featurette-divider">
 
-        <hr class="featurette-divider">
-
-        <div class="featurette" id="services">
-            <img class="featurette-image img-circle img-responsive pull-left" src="/images/11311218064_de0ec78439_o.jpg">
-            <h2 class="featurette-heading">Hand Crafted Algorithms
-                <span class="text-muted">No More Under Performing Groups.</span>
-            </h2>
-            <p class="lead">Take advantage of the latest education research. We break it down discipline by discipline and tailor our algorithms to create groups based on what's relevant for team performance in your subject area. While some things are common to group performance in every domain, some things are not. We tailor our algorithms to create groups with the optimal mix of students in each area. If your area of education is not yet included, drop us a line and we'll get on it.</p>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="featurette" id="contact">
-            <img class="featurette-image img-circle img-responsive pull-right" src="/images/8425532598_5bb22dcd19_o.jpg">
-            <h2 class="featurette-heading">Succeed As An Educator
-                <span class="text-muted">Effective Team Management.</span>
-            </h2>
-            <p class="lead">Groupify will allow you to track the performance of your teams throughout their group work. Ensure that groups are managing themselves effectively with the ability to step in early helping your students get the best results.</p>
-        </div>
-
-        <!-- /END THE FEATURETTES -->
-
-        <hr>
-
-        <!-- FOOTER -->
-        <footer>
-
-            All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
-            <p>Copyright &copy; Groupify Pty Ltd 2013</p>
-        </footer>
-        <!-- /END OF FOOTER -->
-
+    <div class="featurette" id="about">
+        <img class="featurette-image img-circle img-responsive pull-right" src="/images/8424476075_8e33ab63fc_o.jpg">
+        <h2 class="featurette-heading">Save Yourself The Headache
+            <span class="text-muted">Let Us Do The Sorting.</span>
+        </h2>
+        <p class="lead">We want you to have full control of how your students are sorted. So we give you the power to specify what criteria to sort by and the priority of each. We provide the most relevant criteria to choose from, you can include as many or as few as you wish. Your options include having the students nominate the times they are available; using past academic results; awareness of cultural background; and field of degree specialisation. We value your feedback! So if there are other criteria that you use to sort your students that you would like us to include, please let us know!</p>
     </div>
-    <!-- /container -->
 
-    <!-- JavaScript -->
-    <script src="../../assets/javascripts/jquery-1.10.2.js"></script>
-    <script src="../../assets/javascripts/bootstrap.js"></script>
+    <hr class="featurette-divider">
 
-</body>
+    <div class="featurette" id="services">
+        <img class="featurette-image img-circle img-responsive pull-left" src="/images/11311218064_de0ec78439_o.jpg">
+        <h2 class="featurette-heading">Hand Crafted Algorithms
+            <span class="text-muted">No More Under Performing Groups.</span>
+        </h2>
+        <p class="lead">Take advantage of the latest education research. We break it down discipline by discipline and tailor our algorithms to create groups based on what's relevant for team performance in your subject area. While some things are common to group performance in every domain, some things are not. We tailor our algorithms to create groups with the optimal mix of students in each area. If your area of education is not yet included, drop us a line and we'll get on it.</p>
+    </div>
 
-</html>
+    <hr class="featurette-divider">
+
+    <div class="featurette" id="contact">
+        <img class="featurette-image img-circle img-responsive pull-right" src="/images/8425532598_5bb22dcd19_o.jpg">
+        <h2 class="featurette-heading">Succeed As An Educator
+            <span class="text-muted">Effective Team Management.</span>
+        </h2>
+        <p class="lead">Groupify will allow you to track the performance of your teams throughout their group work. Ensure that groups are managing themselves effectively with the ability to step in early helping your students get the best results.</p>
+    </div>
+
+    <!-- /END THE FEATURETTES -->
+
+    <hr>
+
+    <!-- FOOTER -->
+    <footer>
+
+        All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
+        <p>Copyright &copy; Groupify Pty Ltd 2013</p>
+    </footer>
+    <!-- /END OF FOOTER -->
+
+</div>

@@ -1,6 +1,11 @@
 // Place all the styles related to the landings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+form#new_landing {
+	display: inline-block;
+}
+
 body {
 	margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
 }

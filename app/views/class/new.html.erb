@@ -1,0 +1,14 @@
+<div class="container">
+  
+<h1>Please enter your course details:</h1>
+<%= form_for :course, url: {controller: "class", action: "create"} do |f| %>
+  <p>
+    <%= f.label 'Course name' %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+</div>

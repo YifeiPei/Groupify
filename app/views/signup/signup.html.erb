@@ -1,3 +1,18 @@
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Groupify</a>
+    </div>
+  </div><!-- /.container -->
+</nav>
+
+<div class="container text-center">
 <% @page_title = "Groupify | Signup" -%>
 <div class= "Sign_Form">
   <h1>Sign Up</h1>
@@ -18,10 +33,9 @@
     <p>     
       Password Confirmation:</br> <%= f.password_field :password_confirmation%>
     </p>
-
-    <%= f.submit :Signup %>
+ 	<%= f.submit :Signup, :class => "btn" %>
+      <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/'", type: 'button'}) %>
   <% end %>
-
   <% if @user.errors.any? %>
 	<ul class="Signup_Errors">
 		<% for message_error in @user.errors.full_messages %>
@@ -30,3 +44,12 @@
 	</ul>
   <% end %>
 </div>
+</div>
+<div class="container">
+      <footer>
+            <p>Copyright &copy; Groupify Pty Ltd 2013</p>
+        </footer>
+        <!-- /END OF FOOTER -->
+
+    </div>
+    <!-- /container -->
