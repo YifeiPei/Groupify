@@ -19,7 +19,8 @@ class SortController < ApplicationController
       	sc.age = params[:age]
       	sc.gpa = params[:gpa]
       	sc.degree = params[:degree]
-    	end
+       	sc.group_size = params[:group_size]
+	   	end
     	
     	if @sort_config.save
       	flash[:notice] = "Configuration saved."
@@ -31,6 +32,6 @@ class SortController < ApplicationController
     else
    	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
     end
-    render "index"
+    redirect_to '/class/sorted'
   end
 end

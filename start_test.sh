@@ -1,1 +1,1 @@
-rails server -e test -d
+sudo rails server -e test -d
