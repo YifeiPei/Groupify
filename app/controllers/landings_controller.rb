@@ -17,7 +17,7 @@ class LandingsController < ApplicationController
   # GET /landings/1
   # GET /landings/1.json
   def show
-	render "feedback"
+	redirect_to root_path
   end
 
   # POST /landings
