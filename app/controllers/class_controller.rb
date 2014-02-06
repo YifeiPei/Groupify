@@ -55,4 +55,17 @@ class ClassController < LecturerApplicationController
   
   end
 
+  def sorted
+    #flash[:notice] = session[:user_id]
+    #@current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
+  @current_course = Course.find_by(id: session[:course_id])
+    flash[:notice] = @current_course.inspect
+    #session[:course_id] = @current_course.id
+  @student_list = []
+      CSV.foreach("uploads/STEM-sorted.csv") do |row|
+        @student_list << row
+      end
+      render 'show'
+  end
+
 end
