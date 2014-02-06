@@ -8,8 +8,7 @@ class GroupedController < LecturerApplicationController
     @student_list = []
     @groups = 0
     i = 0
-    CSV.foreach("uploads/STEM-sorted.csv") do |row|
-
+    CSV.foreach("#{Rails.root}/uploads/STEM-sorted.csv") do |row|
       if i == 0
         @header = row
         i = 1
