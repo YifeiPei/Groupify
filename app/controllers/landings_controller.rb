@@ -26,7 +26,7 @@ class LandingsController < ApplicationController
     @landing = Landing.new(landing_params)
     respond_to do |format|
       if @landing.save
-        format.html { redirect_to @landing, notice: 'Email was successfully created.' }
+        format.html { redirect_to @landing }
         format.json { render action: 'index', status: :created, location: @landing }
       else
         format.html { render action: 'index' }
