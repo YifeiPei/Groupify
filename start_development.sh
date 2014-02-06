@@ -1,1 +1,1 @@
-sudo rails server -e development -d
+rvmsudo rails server -e development -d
