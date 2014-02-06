@@ -32,6 +32,6 @@ class SortController < ApplicationController
     else
    	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
     end
-    render "index"
+    redirect_to '/class/sorted'
   end
 end
