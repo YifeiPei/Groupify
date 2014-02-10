@@ -10,7 +10,7 @@ class SignupController < ApplicationController
     	@user = User.new(params[:signup])
     	if @user.save
   		 session[:user_id] = @user.id
-    		flash[:notice] = "You Signed up successfully"
+    	#	flash[:notice] = "You Signed up successfully"
         	flash[:color]= "valid"
 			redirect_to "/lecturer"
       else

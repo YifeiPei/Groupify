@@ -21,7 +21,7 @@ class ClassController < LecturerApplicationController
       c.user_id = session[:user_id]
     end
     if @course.save
-      flash[:notice] = "Course added."
+    #  flash[:notice] = "Course added."
       flash[:color] = "valid"
     else
        flash[:notice] = "Course not added."
@@ -43,19 +43,20 @@ class ClassController < LecturerApplicationController
     # Retrieve file from db, this depends on the upload file implementation
     # and will be written once that has been merged in.
 
-   # if @current_course.filelocation != nil
+    if @current_course.filelocation != nil
       # Parse file into list of students
+      filename = @current_course.filelocation
       @student_list = []
       #CSV.foreach(@current_course.filelocation) do |row|
-      CSV.foreach("#{Rails.root}/uploads/STEM.csv") do |row|
+      CSV.foreach("#{Rails.root}/uploads/#{filename}") do |row|
         @student_list << row
         #flash[:notice] = "row" + row[0] + row [1] + row[2]
         #student = Student.new (row[0], row[1], row[2])
         #@student_list << student
       end
-    #else
-     # @student_list = nil
-    #end
+    else
+      @student_list = nil
+    end
     #render 'show'
   
   end
@@ -63,7 +64,7 @@ class ClassController < LecturerApplicationController
   def sorted
    @current_course = Course.find_by(id: session[:course_id])
    @student_list = []
-   CSV.foreach("#{Rails.root}/uploads/STEM-sorted.csv") do |row|
+   CSV.foreach("#{Rails.root}/uploads/access_adelaide-sorted.csv") do |row|
     @student_list << row
    end
    render 'show'

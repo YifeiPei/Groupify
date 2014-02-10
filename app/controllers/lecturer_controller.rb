@@ -9,7 +9,7 @@ class LecturerController < LecturerApplicationController
   		render "index"
   	end
     def logout
-		session[:user_id] = nil
+		reset_session
 		redirect_to "/"
 	end
 end

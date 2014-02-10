@@ -33,9 +33,10 @@ Your students have already been grouped. Doing this will reset the existing sort
 <% end %>
  <br />
      <%= submit_tag "Start Sort", class: "btn" %>
+    <%= link_to "<button class= 'btn'>Back</button>".html_safe,  controller: "class", action: "show", id: @current_course.name %>
+
 <% end %>
  <br />
-    <%= link_to "Back", class: "btn",controller: "class", action: "show", id: @current_course.name %>
 
  
 </div>

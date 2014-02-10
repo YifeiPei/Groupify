@@ -23,7 +23,7 @@ class SortController < ApplicationController
 	   	end
     	
     	if @sort_config.save
-      	flash[:notice] = "Configuration saved."
+      #	flash[:notice] = "Configuration saved."
       	flash[:color] = "valid"
     	else
        	flash[:notice] = "Configuration not saved."
