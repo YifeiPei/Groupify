@@ -48,7 +48,7 @@ class ClassController < LecturerApplicationController
       filename = @current_course.filelocation
       @student_list = []
       #CSV.foreach(@current_course.filelocation) do |row|
-      CSV.foreach("#{Rails.root}/#{filename}") do |row|
+      CSV.foreach("#{Rails.root}/uploads/#{filename}") do |row|
         @student_list << row
         #flash[:notice] = "row" + row[0] + row [1] + row[2]
         #student = Student.new (row[0], row[1], row[2])
