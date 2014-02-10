@@ -47,7 +47,7 @@ class ClassController < LecturerApplicationController
       # Parse file into list of students
       @student_list = []
       #CSV.foreach(@current_course.filelocation) do |row|
-      CSV.foreach("#{Rails.root}/uploads/STEM.csv") do |row|
+      CSV.foreach("#{Rails.root}/uploads/access_adelaide.csv") do |row|
         @student_list << row
         #flash[:notice] = "row" + row[0] + row [1] + row[2]
         #student = Student.new (row[0], row[1], row[2])
@@ -63,7 +63,7 @@ class ClassController < LecturerApplicationController
   def sorted
    @current_course = Course.find_by(id: session[:course_id])
    @student_list = []
-   CSV.foreach("#{Rails.root}/uploads/STEM-sorted.csv") do |row|
+   CSV.foreach("#{Rails.root}/uploads/access_adelaide-sorted.csv") do |row|
     @student_list << row
    end
    render 'show'

@@ -30,24 +30,21 @@
   </br>
 <%  if @student_list != nil # Display list %>
 <table class="table">
- 
+  <tr>
+    <th>Student Number</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Degree</th>
+  </tr>
 
   <% @student_list.each_with_index do |student, index| %>
-    <% if index == 0 %>
-      <tr>
-        <%  student.each do |col| %>
-          <th><%= col %> </th>
-        <% end %>
-      </tr>
-
-    <% elsif index != 0 %>
+    
       <tr>
         <% student.each do |data| %>
         <td> <%= data %> </td>
         <% end %>
       </tr>
     <% end %>
-  <% end %>
 </table>
 
 <% else %>
