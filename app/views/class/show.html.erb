@@ -49,6 +49,9 @@
 
 <% else %>
   <p> There are no student details uploaded for this course. </p>
+  <p> Please upload a csv file with student details in the following format:</p>
+  <p> Student number, first name, last name, degree</p>
+  <p> This can be exported from access adelaide.</p>
   <%= form_tag('/upload/upload_file', multipart: true) do %>
 
     <%= label_tag(:file) %>
