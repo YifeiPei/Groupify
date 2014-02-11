@@ -52,11 +52,10 @@
   <p> Please upload a csv file with student details in the following format:</p>
   <p> Student number, first name, last name, degree</p>
   <p> This can be exported from access adelaide.</p>
-  <%= form_tag('/upload/upload_file', multipart: true) do %>
-
-    <%= label_tag(:file) %>
-    <%= file_field_tag(:file) %>
-    <%= submit_tag 'Upload' %>
-  <% end %>
+ <%= form_tag '/upload/import', multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+   
 <% end %>
 </div>
