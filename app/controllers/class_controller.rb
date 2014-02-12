@@ -37,26 +37,9 @@ class ClassController < LecturerApplicationController
     else
       @current_course = Course.find_by(id: session[:course_id])
     end
-      #flash[:notice] = @current_course.inspect
-	#session[:course_id] = @current_course.id
-    # Load csv file and create list of students
-    # Retrieve file from db, this depends on the upload file implementation
-    # and will be written once that has been merged in.
+   
+     @students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
 
-    if @current_course.filelocation != nil
-      # Parse file into list of students
-      filename = @current_course.filelocation
-      @student_list = []
-      #CSV.foreach(@current_course.filelocation) do |row|
-      CSV.foreach("#{Rails.root}/uploads/#{filename}") do |row|
-        @student_list << row
-        #flash[:notice] = "row" + row[0] + row [1] + row[2]
-        #student = Student.new (row[0], row[1], row[2])
-        #@student_list << student
-      end
-    else
-      @student_list = nil
-    end
     #render 'show'
   
   end

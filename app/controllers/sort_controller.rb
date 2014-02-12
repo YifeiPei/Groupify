@@ -21,8 +21,9 @@ class SortController < ApplicationController
       	sc.degree = params[:degree]
        	sc.group_size = params[:group_size]
 	   	end
-    	
-    	if @sort_config.save
+     	if @sort_config.save
+		
+  
       #	flash[:notice] = "Configuration saved."
       	flash[:color] = "valid"
     	else
@@ -34,4 +35,9 @@ class SortController < ApplicationController
     end
     redirect_to '/class/sorted'
   end
+  
+  def start_sort
+  
+  end
+  
 end
