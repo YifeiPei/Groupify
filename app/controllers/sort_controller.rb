@@ -19,6 +19,7 @@ class SortController < ApplicationController
       sorter = Grouper::Random_sorter.new
     elsif @existing_config.algorithm == 1
       # Do evolutionary sort
+      sorter = Grouper::Random_sorter.new
     end
     
     # Get student list from csv file

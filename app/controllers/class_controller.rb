@@ -63,9 +63,15 @@ class ClassController < LecturerApplicationController
 
   def sorted
    @current_course = Course.find_by(id: session[:course_id])
+   filename = @current_course.filelocation
    @student_list = []
-   CSV.foreach("#{Rails.root}/uploads/access_adelaide-sorted.csv") do |row|
-    @student_list << row
+   if CSV.foreach("#{Rails.root}/uploads/#{filename}-sorted.csv") do |row|
+       @student_list << row
+    end
+   else
+      CSV.foreach("#{Rails.root}/uploads/access_adelaide-sorted.csv") do |row|
+        @student_list << row
+    end
    end
    render 'show'
   end
