@@ -1,5 +1,4 @@
 gem 'roo'
-gem "iconv"
 
 source 'https://rubygems.org'
 gem 'bootstrap-sass'
