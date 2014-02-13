@@ -1,6 +1,6 @@
 require 'csv'
 class Student < ActiveRecord::Base
-	has_many :scgs
+	has_many :scgs, autosave: true
   	has_many :courses, through: :scgs
   	
   def self.import(file,course_id)
