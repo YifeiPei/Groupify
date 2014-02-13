@@ -9,7 +9,8 @@ class SortController < ApplicationController
   end
 
   def sort
-    #render :text => 'in sort function'
+    # Check if course is already grouped
+   
     @existing_config = SortConfig.find_by(course_id: session[:course_id])
   	if @existing_config.blank?
       redirect_to '/sort/index'
@@ -37,18 +38,64 @@ class SortController < ApplicationController
 
     # Set parameters
     group_size = @existing_config.group_size
-
-    # Sort student list
-    sorted_list = sorter.sort( student_list, group_size )
-
-    # Store sorted list
-    if course.filelocation
-      destination = "#{Rails.root}/uploads/" + filename + '-sorted.csv'
-      sorter.write_group_numbers_to_csv( sorted_list, destination )
-    else
-    # Update db
-      sorter.write_group_numbers_to_db( sorted_list )
+    
+    # Find out number of students in course
+    total_students = student_list.length
+    # Calculate number of groups
+    number_of_groups = total_students / group_size
+    # Create new groups in groups table
+    groups = []
+    for count in 0...number_of_groups do
+      groups << Group.new do |group|
+        group.number = count + 1
+      end
+      groups[count].save
     end
+    # Sort students into groups
+    group_numbers = []
+
+  				for counter in 0...total_students
+    				group_numbers[counter] = []
+    				group_numbers[counter][0] = counter + 1
+  				end
+  				group_numbers.shuffle!
+
+  				i = 1
+  				group_numbers.map! do |student|
+    				student << i
+    				unless i == number_of_groups
+      					i += 1
+    				else i = 1
+    				end
+    				student
+  				end
+
+  				group_numbers.sort! {|a, b| a[0].to_i <=> b[0].to_i }
+
+    update_info = {}
+    # Iterate through students
+    student_list.each_with_index do |student, index|
+
+    scg = Scg.where(student_id: student.id, course_id: student.course_id)
+    id = scg.id
+    item = {"group_id" => groups[group_numbers[index][1]].id}
+    update_info[scg.id] = item
+    end
+    # Update SCG table where course_id and student_id, with group_id
+    Scg.update( update_info.keys, update_info.values )
+    # Sort student list
+    #sorted_list = sorter.sort( student_list, group_size )
+
+
+    #render :text => sorted_list.inspect
+    # Store sorted list
+    #if course.filelocation
+     # destination = "#{Rails.root}/uploads/" + filename + '-sorted.csv'
+      #sorter.write_group_numbers_to_csv( sorted_list, destination )
+    #else
+    # Update db
+     # sorter.write_group_numbers_to_db( sorted_list )
+    #end
     redirect_to '/class/sorted'
   end
   
