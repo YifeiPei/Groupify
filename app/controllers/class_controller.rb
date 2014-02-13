@@ -32,7 +32,7 @@ class ClassController < LecturerApplicationController
 
   def show
     if params[:id]
-      @current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
+      @current_course = Course.find_by(user_id: session[:user_id], id: params[:id])
       session[:course_id] = @current_course.id
     else
       @current_course = Course.find_by(id: session[:course_id])
@@ -45,11 +45,9 @@ class ClassController < LecturerApplicationController
   end
 
   def sorted
-   @current_course = Course.find_by(id: session[:course_id])
-   @student_list = []
-   CSV.foreach("#{Rails.root}/uploads/access_adelaide-sorted.csv") do |row|
-    @student_list << row
-   end
+   	@current_course = Course.find_by(id: session[:course_id])
+	@students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
+
    render 'show'
   end
 
