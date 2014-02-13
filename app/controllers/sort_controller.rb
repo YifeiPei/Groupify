@@ -92,6 +92,8 @@ class SortController < ApplicationController
     # The following command didn't work, don't know why...
     #Scg.update( update_info.keys, update_info.values )
 
+    course.grouped = true
+    course.save
 
     redirect_to '/class/sorted'
   end
