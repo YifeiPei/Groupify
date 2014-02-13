@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  'no': 1
-  fitness: 1
+  size: 1
+  student_id: 1
+  course_id: 1
 
 two:
-  name: MyString
-  'no': 1
-  fitness: 1
+  size: 1
+  student_id: 1
+  course_id: 1

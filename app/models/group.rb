@@ -1,4 +1,3 @@
 class Group < ActiveRecord::Base
-  belongs_to :course
-  belongs_to :student
+	has_many :scgs, autosave: true
 end
