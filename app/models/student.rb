@@ -2,7 +2,8 @@ require 'csv'
 class Student < ActiveRecord::Base
 	has_many :scgs, autosave: true
   	has_many :courses, through: :scgs
-  	
+  	  	has_many :groups, through: :scgs
+
   def self.import(file,course_id)
   spreadsheet = open_spreadsheet(file)
 #  header = spreadsheet.row(1)
@@ -15,7 +16,18 @@ class Student < ActiveRecord::Base
     student.degree = row[3]
     student.course_id = course_id
     student.email = "#{student.student_id}@student.adelaide.edu.au"
-   student.save!
+    	scg = Scg.new
+    	scg.student_id = row[0]
+    	scg.course_id = course_id
+    if !row[4].blank?
+    	group = Group.find_by(:number => row[4]) || Group.new
+    	group.number = row[4]
+    	group.save!
+    	scg.group_id = group.id
+    end
+    scg.save!
+    student.scgs << scg
+	student.save!
   end
 end
 

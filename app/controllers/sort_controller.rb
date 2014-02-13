@@ -72,17 +72,27 @@ class SortController < ApplicationController
 
   				group_numbers.sort! {|a, b| a[0].to_i <=> b[0].to_i }
 
+        
+    #a =  groups[group_numbers[5][1]-1]
+    #render :text => a.id
+
+
     update_info = {}
     # Iterate through students
     student_list.each_with_index do |student, index|
 
-    scg = Scg.where(student_id: student.id, course_id: student.course_id)
+    scg = Scg.where(student_id: student.id, course_id: student.course_id).take
+    #render scg.inspect
     id = scg.id
-    item = {"group_id" => groups[group_numbers[index][1]].id}
+    group = groups[group_numbers[index][1]-1]
+    item = {"group_id" => group.id}
     update_info[scg.id] = item
     end
     # Update SCG table where course_id and student_id, with group_id
     Scg.update( update_info.keys, update_info.values )
+    # Uncomment down to here
+
+
     # Sort student list
     #sorted_list = sorter.sort( student_list, group_size )
 
@@ -110,9 +120,7 @@ class SortController < ApplicationController
       	sc.degree = params[:degree]
        	sc.group_size = params[:group_size]
 	   	end
-     	if @sort_config.save
-		
-  
+     	if @sort_config.save  
       #	flash[:notice] = "Configuration saved."
       	flash[:color] = "valid"
     	else
