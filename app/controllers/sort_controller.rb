@@ -86,10 +86,17 @@ class SortController < ApplicationController
     id = scg.id
     group = groups[group_numbers[index][1]-1]
     item = {"group_id" => group.id}
-    update_info[scg.id] = item
+    
+    #scg.update(group_id: group.id)
+
+    scg.group_id = group.id
+    scg.save
+
+    #update_info[scg.id] = item
     end
     # Update SCG table where course_id and student_id, with group_id
-    Scg.update( update_info.keys, update_info.values )
+    #render :text => update_info.inspect
+    #Scg.update( update_info.keys, update_info.values )
     # Uncomment down to here
 
 
