@@ -25,17 +25,10 @@ class SortController < ApplicationController
       sorter = Grouper::Random_sorter.new
     end
     
-    # Get student list from csv file
     course = Course.find_by(id: session[:course_id])
-    if course.filelocation
-      filename = course.filelocation
-      source = "#{Rails.root}/uploads/" + filename
-      student_list = sorter.get_student_list_from_csv( source )
-    else
     # Get student list from db
-      student_list = sorter.get_student_list_from_db( session[:course_id] )
-    end
-
+    student_list = sorter.get_student_list_from_db( session[:course_id] )
+    
     # Set parameters
     group_size = @existing_config.group_size
     
