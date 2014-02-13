@@ -46,8 +46,8 @@ module Grouper
   						student['group_number'] = group_numbers[i][1]
   					elsif student.kind_of?(Array)
   						student << group_numbers[i][1]
-                                        elsif student.respond_to?(:group_number)
-                                                student.group_number = group_numbers[i][1]
+            elsif student.respond_to?(:group_number)
+              student.group_number = group_numbers[i][1]
   					end
   					i = i +1
   					student
@@ -64,10 +64,11 @@ module Grouper
 			student_list = Student.where(course_id: course_id)
 		end
 
-		def write_group_numbers_to_db( sorted_list, course_id )
-			sorted_list.each do |student|
-				Student.where(student_id: student['student_id']).update_all(group_number: student['group_number'])
-			end
+		def write_group_numbers_to_db( sorted_list )
+			sorted_list.save
+      #sorted_list.each do |student|
+			#	Student.where(student_id: student['student_id']).update_all(group_number: student['group_number'])
+			#end
 		end
 
 		def write_group_numbers_to_csv( sorted_list, filename )

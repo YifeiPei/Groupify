@@ -20,25 +20,35 @@ class SortController < ApplicationController
     elsif @existing_config.algorithm == 1
       # Do evolutionary sort
       sorter = Grouper::Random_sorter.new
+    else
+      sorter = Grouper::Random_sorter.new
     end
     
     # Get student list from csv file
     course = Course.find_by(id: session[:course_id])
-    filename = course.filelocation
-    source = "#{Rails.root}/uploads/" + filename 
-    student_list = sorter.get_student_list_from_csv( source )
+    if course.filelocation
+      filename = course.filelocation
+      source = "#{Rails.root}/uploads/" + filename
+      student_list = sorter.get_student_list_from_csv( source )
+    else
+    # Get student list from db
+      student_list = sorter.get_student_list_from_db( session[:course_id] )
+    end
 
     # Set parameters
     group_size = @existing_config.group_size
 
-    #render :text => group_size
     # Sort student list
     sorted_list = sorter.sort( student_list, group_size )
 
     # Store sorted list
-    destination = "#{Rails.root}/uploads/" + filename + '-sorted.csv'
-    sorter.write_group_numbers_to_csv( sorted_list, destination )
-
+    if course.filelocation
+      destination = "#{Rails.root}/uploads/" + filename + '-sorted.csv'
+      sorter.write_group_numbers_to_csv( sorted_list, destination )
+    else
+    # Update db
+      sorter.write_group_numbers_to_db( sorted_list )
+    end
     redirect_to '/class/sorted'
   end
   
