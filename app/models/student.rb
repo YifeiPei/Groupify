@@ -1,7 +1,7 @@
 require 'csv'
 class Student < ActiveRecord::Base
-	has_many :groups
-  	has_many :courses, through: :groups
+	has_many :scgs
+  	has_many :courses, through: :scgs
   	
   def self.import(file,course_id)
   spreadsheet = open_spreadsheet(file)
