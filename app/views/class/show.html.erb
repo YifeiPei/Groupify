@@ -46,7 +46,7 @@
         <td> <%= data.last_name %> </td>
         <td> <%= data.degree %> </td>
      <% if @current_course.grouped %>
-    <td> 1</td>
+    <td> <%= Group.find_by(:id => data.scgs.find_by(:student_id => data.id).group_id).number  %></td>
     <% end %>       
       </tr>
     <% end %>
