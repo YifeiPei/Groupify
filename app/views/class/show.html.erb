@@ -15,11 +15,13 @@
       <%= submit_tag 'Group', class: "btn" %>
     <% end %>
   	</div>
+  	<% if @current_course.grouped %>
     <div class="col-md-2" >
     <%= form_tag('/grouped') do %>
       <%= submit_tag 'View Groups', class: "btn" %>
     <% end %>
   	</div>
+  	<% end %>
     <div class="col-md-1" >
     <%= form_tag() do %>
       <%= submit_tag 'Contact', class: "btn" %>
@@ -58,8 +60,8 @@
   <p> Student number, first name, last name, degree</p>
   <p> This can be exported from access adelaide.</p>
  <%= form_tag '/upload/import', multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <%= file_field_tag :file, class: "btn" %>
+  <%= submit_tag "Import", class: "btn" %>
 <% end %>
    
 <% end %>

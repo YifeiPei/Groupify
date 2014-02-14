@@ -2,7 +2,7 @@ require 'csv'
 class Student < ActiveRecord::Base
 	has_many :scgs, autosave: true
   	has_many :courses, through: :scgs
-  	  	has_many :groups, through: :scgs
+  	has_many :groups, through: :scgs
 
   def self.import(file,course_id)
   spreadsheet = open_spreadsheet(file)
@@ -27,7 +27,7 @@ class Student < ActiveRecord::Base
     end
     scg.save!
     student.scgs << scg
-	student.save!
+  	 student.save!
   end
 end
 
