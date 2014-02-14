@@ -7,9 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Groupify</a>
+      <a class="navbar-brand" href="/"><%=  image_tag( "Groupify_logo.png", :alt => "Form optimised groups" ) %></a>
     </div>
-
+    <div class="navbarbuttons">
     <div class="navbar-form navbar-right">
       <%= form_for(@landing) do |f| %>
         <% if @landing.errors.any? %>
@@ -34,7 +34,7 @@
       <a href="/lecturer" class = "btn btn-success" >Lecturer Home</a>
    		
    		<% end %>
-   		
+           </div>
    	</div> <!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
