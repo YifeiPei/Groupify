@@ -5,12 +5,16 @@ Trunk::Application.routes.draw do
   resources :landings
 	resources :class
 
- 
+
   get ':controller(/:action(/:id))(.:format)'
 	post ':controller(/:action(/:id(.:format)))'
 	
    root :to => 'landings#index'
   get "upload/index"
+ resources :upload do
+  collection { post :import }
+end
+
   get "login/login"
   get "signup/signup"
 

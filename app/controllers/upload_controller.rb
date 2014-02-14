@@ -1,7 +1,11 @@
 class UploadController < ApplicationController
   def index
   end
-  
+  def import
+  Student.import(params[:file],session[:course_id])
+	redirect_to "/lecturer"
+end
+
   def upload_file
     if params[:file]
       @upload = Upload.new

@@ -4,7 +4,7 @@ class LecturerController < LecturerApplicationController
     @courses = Course.where(user_id: session[:user_id])
   end
   	def delete
-  	    @current_course = Course.find_by(user_id: session[:user_id], name: params[:id])
+  	    @current_course = Course.find_by(user_id: session[:user_id], id: params[:id])
   		@current_course.destroy
   		render "index"
   	end
