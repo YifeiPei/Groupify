@@ -47,7 +47,6 @@ class ClassController < LecturerApplicationController
   def sorted
    	@current_course = Course.find_by(id: session[:course_id])
 	@students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
-
    render 'show'
   end
 

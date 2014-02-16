@@ -3,7 +3,7 @@ class UploadController < ApplicationController
   end
   def import
   Student.import(params[:file],session[:course_id])
-	redirect_to "/lecturer"
+	redirect_to "/class/show/#{session[:course_id]}"
 end
 
   def upload_file

@@ -49,7 +49,7 @@
     
  <%= form_tag '/upload/import', multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <%= submit_tag "Import", class: "btn" %>
 <% end %>
    
       <footer>
