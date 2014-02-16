@@ -11,8 +11,11 @@ class GroupedController < LecturerApplicationController
     @student_list = []
     @groups = 0
     i = 0
-	@students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
-	@students.each do |row|
+    CSV.foreach("#{Rails.root}/uploads/STEM-sorted.csv") do |row|
+      if i == 0
+        @header = row
+        i = 1
+      else
         if @student_list[row[-1].to_i - 1] == nil
           @student_list[row[-1].to_i - 1] = []
         end
@@ -22,6 +25,7 @@ class GroupedController < LecturerApplicationController
         if row[-1].to_i > @groups
           @groups = row[-1].to_i
         end
+      end
     end
   end
 end
