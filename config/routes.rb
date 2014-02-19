@@ -14,7 +14,9 @@ Trunk::Application.routes.draw do
  resources :upload do
   collection { post :import }
 end
-
+ resources :lecturer do
+  collection { post :import }
+end
   get "login/login"
   get "signup/signup"
 

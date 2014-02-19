@@ -23,11 +23,12 @@ class ClassController < LecturerApplicationController
     if @course.save
     #  flash[:notice] = "Course added."
       flash[:color] = "valid"
+  	Student.import(params[:file],session[:course_id])
+	redirect_to "/class/show/#{session[:course_id]}"
     else
        flash[:notice] = "Course not added."
        flash[:color] = "invalid"
     end
-	redirect_to "/lecturer"
   end
 
   def show
