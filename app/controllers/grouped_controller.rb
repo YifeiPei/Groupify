@@ -5,7 +5,7 @@ class GroupedController < LecturerApplicationController
   def index
     @start_column = 1 # only display the first two headers
     @end_column = 2
-    @current_course = Course.find_by(session[:course_id])
+    @current_course = Course.find(session[:course_id])
 
     # Load csv file and create list of students
     @student_list = []

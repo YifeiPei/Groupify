@@ -15,6 +15,15 @@ Trunk::Application.routes.draw do
   collection { post :import }
 end
  resources :lecturer do
+  collection { post :create }
+end
+ resources :lecturer do
+  collection { post :import }
+end
+ resources :class do
+  collection { post :create }
+end
+ resources :class do
   collection { post :import }
 end
   get "login/login"

@@ -22,14 +22,8 @@
 	</div>
 	</div>
 	<br /> <br /> 
-    <div class="row">
-	<div class="col-md-1">	
 	<%= submit_tag "Send", class: "btn" %>
-	</div>
-	<div class="col-md-1">	
+<% end %>
     <%= link_to "<button class= 'btn'>Back</button>".html_safe,  controller: "class", action: "show", id: @current_course.id %>
-	</div>
-	</div>
-	<% end %>
 
  </div>

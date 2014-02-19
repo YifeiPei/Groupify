@@ -23,8 +23,8 @@ class ClassController < LecturerApplicationController
     if @course.save
     #  flash[:notice] = "Course added."
       flash[:color] = "valid"
-  	Student.import(params[:file],session[:course_id])
-	redirect_to "/class/show/#{session[:course_id]}"
+  	Student.import(params[:file],@course.id)
+	redirect_to "/class/show/#{@course.id}"
     else
        flash[:notice] = "Course not added."
        flash[:color] = "invalid"
@@ -38,7 +38,6 @@ class ClassController < LecturerApplicationController
     else
       @current_course = Course.find_by(id: session[:course_id])
     end
-   
      @students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
 
     #render 'show'
