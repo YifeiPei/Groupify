@@ -15,3 +15,4 @@
 //= require jquery.ui.all
 //= require turbolinks
 //= require bootstrap
+//= require ./bootstrap-datepicker.js
