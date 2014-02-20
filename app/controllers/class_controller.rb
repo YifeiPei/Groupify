@@ -23,8 +23,15 @@ class ClassController < LecturerApplicationController
     if @course.save
     #  flash[:notice] = "Course added."
       flash[:color] = "valid"
-  	Student.import(params[:file],@course.id)
-	redirect_to "/class/show/#{@course.id}"
+      	session[:course_id] = @course.id
+
+  		Student.import(params[:file], @course.id)
+    	@sort_config = SortConfig.new do |sc|
+    	sc.course_id = session[:course_id]
+    	sc.group_size = params[:group_size]
+    	end
+    	@sort_config.save
+		redirect_to "/sort/sort"
     else
        flash[:notice] = "Course not added."
        flash[:color] = "invalid"
@@ -32,7 +39,7 @@ class ClassController < LecturerApplicationController
   end
 
   def show
-    if params[:id]
+    if params[:id] && session[:course_id].blank?
       @current_course = Course.find_by(user_id: session[:user_id], id: params[:id])
       session[:course_id] = @current_course.id
     else

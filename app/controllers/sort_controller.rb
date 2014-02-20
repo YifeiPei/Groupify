@@ -95,7 +95,7 @@ class SortController < ApplicationController
     course.grouped = true
     course.save
 
-    redirect_to '/class/sorted'
+    redirect_to '/grouped'
   end
   
   def save_config  
