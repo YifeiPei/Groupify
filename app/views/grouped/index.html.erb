@@ -16,9 +16,19 @@ $(function() {
 
 <h1><%= @current_course.name %></h1>
 <div >
-    <%= form_tag('/class/sorted') do %>
-      <%= submit_tag 'View List', class: "btn" %>
+<% if !@current_course.confirmed %>
+    <%= link_to "<button class= 'btn'>Confirm</button>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?"}} %>
+
+    <%= form_tag('/sort/save_config') do %>
+     <%= label_tag :group_size, "Group Size", class: "col-sm-2" %>
+	<%= number_field_tag 'group_size', @old_size, in: 1...10 %>
+      <%= submit_tag 'Resort', class: "btn" %>
     <% end %>
+<% end %>
+    <%= form_tag('/lecturer') do %>
+      <%= submit_tag 'Back', class: "btn" %>
+    <% end %>
+
   	</div>
 <% for i in 1..@group_count 
     if i%2 == 1 %>
@@ -33,6 +43,7 @@ $(function() {
         <tr>
             <th>Student Number</th>
             <th>Name</th>
+            <th>Degree</th>
         </tr>
       </thead>
       <tbody>
@@ -41,6 +52,7 @@ $(function() {
           <tr>
             <td><%= student.student_id %></td>
             <td><%= student.first_name %> <%= student.last_name %></td>
+            <td><%= student.degree %></td>
           </tr>
         <% end %>
       </tbody>

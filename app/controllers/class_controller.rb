@@ -39,7 +39,7 @@ class ClassController < LecturerApplicationController
   end
 
   def show
-    if params[:id] && session[:course_id].blank?
+    if params[:id]
       @current_course = Course.find_by(user_id: session[:user_id], id: params[:id])
       session[:course_id] = @current_course.id
     else

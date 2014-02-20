@@ -33,7 +33,7 @@
     <li class="divider"></li>
      <% if @courses != nil && @courses.count > 0 %>
        <% @courses.each do |course| %>
-        <li><%= link_to course.name, controller: "class", action: "show", id: course.id %></li>
+        <li><%= link_to course.name, controller: "grouped", action: "index", id: course.id %></li>
        <% end %>
     <% end %>
   </ul>

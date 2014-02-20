@@ -12,7 +12,7 @@
   <% if @courses != nil && @courses.count > 0 %>
        <% @courses.each do |course| %>
           <tr>
-            <td><%= link_to course.name, controller: "class", action: "show", id: course.id %></td>
+            <td><%= link_to course.name, controller: "grouped", action: "index", id: course.id %></td>
             <td> <%= Student.find(:all, :conditions => {:course_id => course.id}).count  %></td>
             <td>
             <% if course.grouped %>

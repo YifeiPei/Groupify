@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220012125) do
+ActiveRecord::Schema.define(version: 20140220045716) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140220012125) do
     t.integer  "semester"
     t.integer  "year"
     t.integer  "user_id"
+    t.boolean  "confirmed"
   end
 
   create_table "data_files", force: true do |t|
