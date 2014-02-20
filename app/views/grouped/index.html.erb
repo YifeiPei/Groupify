@@ -36,7 +36,7 @@ $(function() {
         </tr>
       </thead>
       <tbody>
-      <% @students = Student.find(:all, :order => "group_id", :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>
+      <% @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>
         <% @students.each do |student| %>
           <tr>
             <td><%= student.student_id %></td>

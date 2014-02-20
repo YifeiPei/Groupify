@@ -10,7 +10,12 @@ class SortController < ApplicationController
 
   def sort
     # Check if course is already grouped
-   
+	
+    @current_course = Course.find_by(id: session[:course_id])
+	if @current_course.grouped
+		Group.destroy_all(:course_id => session[:course_id])
+	end
+	
     @existing_config = SortConfig.find_by(course_id: session[:course_id])
   	if @existing_config.blank?
       redirect_to '/sort/index'
@@ -112,7 +117,7 @@ class SortController < ApplicationController
        	flash[:color] = "invalid"
     	end
     else
-   	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
+   	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], group_size: params[:group_size], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
     end
     # Run sort algorithm
     sort
