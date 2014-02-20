@@ -23,11 +23,12 @@ class ClassController < LecturerApplicationController
     if @course.save
     #  flash[:notice] = "Course added."
       flash[:color] = "valid"
+  	Student.import(params[:file],@course.id)
+	redirect_to "/class/show/#{@course.id}"
     else
        flash[:notice] = "Course not added."
        flash[:color] = "invalid"
     end
-	redirect_to "/lecturer"
   end
 
   def show
@@ -37,7 +38,6 @@ class ClassController < LecturerApplicationController
     else
       @current_course = Course.find_by(id: session[:course_id])
     end
-   
      @students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
 
     #render 'show'
@@ -46,7 +46,7 @@ class ClassController < LecturerApplicationController
 
   def sorted
    	@current_course = Course.find_by(id: session[:course_id])
-	@students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
+	@students = Student.find(:all, :order => "group_id", :conditions => {:course_id => session[:course_id]})
    render 'show'
   end
 

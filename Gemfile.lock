@@ -147,6 +147,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
+  mail (= 2.5.4)
   mysql2
   protected_attributes
   rails (= 4.0.0)
