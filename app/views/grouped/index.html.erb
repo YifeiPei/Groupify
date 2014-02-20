@@ -23,7 +23,11 @@ $(function() {
      <%= label_tag :group_size, "Group Size", class: "col-sm-2" %>
 	<%= number_field_tag 'group_size', @old_size, in: 1...10 %>
       <%= submit_tag 'Resort', class: "btn" %>
+
     <% end %>
+    <% else %>
+ <div>These groups have been confimed for your course</div>
+
 <% end %>
     <%= form_tag('/lecturer') do %>
       <%= submit_tag 'Back', class: "btn" %>
