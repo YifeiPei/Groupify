@@ -11,7 +11,9 @@ class ContactController < ApplicationController
  	 @students.each do |student|
  	 @student_emails << student.email
   	end
-  	ContactMailer.contact(@student_emails).deliver
+  	 @current_user = User.find(session[:user_id]) 
+
+  	ContactMailer.contact(@current_user.email, @student_emails, params[:subject], params[:message]).deliver
 
   	redirect_to "/class/show/#{session[:course_id]}"
   end

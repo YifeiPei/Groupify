@@ -1,7 +1,7 @@
 class ContactMailer < ActionMailer::Base
   default from: "admin@groupify.com.au"
    
-    def contact(student_emails)
-    mail(:to =>  student_emails, :subject => "hello")
+    def contact(from, to, subject, msg)
+    mail(:to =>  to, :cc => from, :subject => subject, :body => msg)
   end
 end
