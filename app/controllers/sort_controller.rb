@@ -41,6 +41,7 @@ class SortController < ApplicationController
     for count in 0...number_of_groups do
       groups << Group.new do |group|
         group.number = count + 1
+        group.course_id = course.id
       end
       groups[count].save
     end
@@ -72,10 +73,11 @@ class SortController < ApplicationController
     scg = Scg.where(student_id: student.id, course_id: student.course_id).take
     group = groups[group_numbers[index][1]-1]
     item = {"group_id" => group.id}
-
     # The following command didn't work
     #scg.update(group_id: group.id)
 
+	student.group_id = group.id
+	student.save
     scg.group_id = group.id
     scg.save
 
