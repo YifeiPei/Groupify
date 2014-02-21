@@ -16,7 +16,6 @@ class ClassController < LecturerApplicationController
   end
 
   def create
-  session[:err_msg] = []
    	if params[:course][:name].blank?
    		session[:err_msg][1] = "Course name cannot be blank."
 	end
@@ -42,7 +41,7 @@ class ClassController < LecturerApplicationController
       	flash[:color] = "valid"
       	session[:course_id] = @course.id
       	Student.import(params[:file], @course.id)
-    	@sort_config = SortConfig.new do |sc|
+    	  @sort_config = SortConfig.new do |sc|
     		sc.course_id = session[:course_id]
     		sc.group_size = params[:group_size]
     	end
