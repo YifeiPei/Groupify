@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20140220045716) do
 
   create_table "courses", force: true do |t|
-    t.integer  "user_id"
     t.string   "name"
     t.string   "filelocation"
     t.datetime "created_at"
@@ -24,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140220045716) do
     t.string   "course_code"
     t.integer  "semester"
     t.integer  "year"
+    t.integer  "user_id"
     t.boolean  "confirmed"
   end
 
@@ -68,18 +68,18 @@ ActiveRecord::Schema.define(version: 20140220045716) do
   end
 
   create_table "students", force: true do |t|
+    t.string   "student_id"
     t.string   "first_name"
+    t.string   "last_name"
+    t.string   "degree"
+    t.integer  "course_id"
+    t.integer  "group_id"
     t.string   "email"
     t.integer  "gender"
     t.integer  "age"
     t.float    "GPA"
-    t.integer  "course_id"
-    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "last_name"
-    t.string   "student_id"
-    t.string   "degree"
   end
 
   create_table "uploads", force: true do |t|
