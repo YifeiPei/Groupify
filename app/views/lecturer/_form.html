@@ -1,4 +1,4 @@
-<%= form_for :course, {url: {controller: "class", action: "create"}, html: {role: "form", class: "col-xs-4 form-horizontal" , multipart: true}} do |f| %>
+<%= form_for :course, {url: {controller: "class", action: "create"}, html: {role: "form", class: "col-xs-5 form-horizontal" , multipart: true}} do |f| %>
     <div class="form-group">
       <%= f.label :name, "Class", class: "col-sm-4"  %>
       <div class="col-sm-8">
@@ -12,6 +12,7 @@
         <div class="dummyfile">
           <%= text_field_tag "filename",nil, {class: "input disabled form-control", readonly: true} %>
           <a id="fileselectbutton" class="btn btn-default">Choose...</a>
+          <span id="upload_tooltip" data-toggle="tooltip" title="Please select a CSV file exported from Access Adelaide" class="glyphicon glyphicon-question-sign"></span>
         </div>
       </div>  
     </div>
