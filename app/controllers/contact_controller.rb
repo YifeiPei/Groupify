@@ -30,9 +30,6 @@ class ContactController < ApplicationController
  	 		@students.each do |student|
  	 		@group_emails << student.email
   			end
-	#		threads	<< Thread.new do
-	#			ContactMailer.contact(@current_user.email, @group_emails, "Group fromed notification for Group #{i}", "bla bla bla").deliver
-   	#		end
 				ContactMailer.contact(@current_user.email, @group_emails, "You are in Group #{i} for #{@current_course.name}", body).deliver
 	 end
  	 Process.kill("HUP") 
