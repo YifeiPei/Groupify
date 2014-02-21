@@ -16,20 +16,21 @@ class ClassController < LecturerApplicationController
   end
 
   def create
+  session[:err_msg] = []
    	if params[:course][:name].blank?
-   		session[:err_msg1] = "Course name cannot be blank."
+   		session[:err_msg][1] = "Course name cannot be blank."
 	end
   	if params[:file].blank? 
-   		session[:err_msg2] = "You need to import a file."
+   		session[:err_msg][2] = "You need to import a file."
   	elsif File.extname(params[:file].original_filename) != ".csv"
-   		session[:err_msg2] = "You need to import a csv file."
+   		session[:err_msg][3] = "You need to import a csv file."
 	end
 	
   	if params[:group_size].to_i <= 0 
-   		session[:err_msg4] = "Group size cannot less than 0."
+   		session[:err_msg][4] = "Group size cannot less than 0."
 	end
 
-  	if params[:course][:name].blank? || params[:file].blank? || params[:group_size].to_i <= 0 || File.extname(params[:file].original_filename) != ".csv"
+  	if session[:err_msg].blank?
   		redirect_to "/lecturer"
 	else
    	 	@course = Course.new do |c|
