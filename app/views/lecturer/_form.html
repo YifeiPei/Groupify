@@ -24,8 +24,7 @@
         <div class="dummyfile">
           <%= text_field_tag "filename",nil, {class: "input disabled form-control", readonly: true} %>
           <a id="fileselectbutton" class="btn btn-default">Choose...</a>
-          <img id="upload_tooltip" src="Actions-help-about-icon.png" alt="help icon" data-toggle="tooltip" title="Please select a CSV file exported from Access Adelaide" />
-          <span id="upload_tooltip" data-toggle="tooltip" title="Please select a CSV file exported from Access Adelaide" class="glyphicon glyphicon-question-sign"></span>
+     <%= image_tag("Actions-help-about-icon.png", id: "upload_tooltip", alt: "help icon", "data-toggle" => "tooltip", title: "Please select a CSV file exported from Access Adelaide") %>
         </div>
       </div>  
     </div>
