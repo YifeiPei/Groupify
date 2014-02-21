@@ -33,7 +33,7 @@
     <% end %>
     </table>
 
-  <% if session[:err_msg][1].blank? && session[:err_msg][2].blank? && session[:err_msg][3].blank? & session[:err_msg][4].blank?  %>
+  <% if session[:err_msg][1].blank? && session[:err_msg][2].blank? && session[:err_msg][3].blank? && session[:err_msg][4].blank?  %>
     <div id="add_class">
       <%= button_to("Add a class", '/lecturer', {class: "btn btn-default", id: "add_class", remote: true}) %>
     </div>	
