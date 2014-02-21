@@ -1,6 +1,7 @@
 <div class="container">
   <!-- List of courses this lecture teaches -->
   <h1>Classes</h1>
+
     <table class="table">
     <tr>
       <th>Course name</th>
@@ -31,7 +32,37 @@
         <% end %>
     <% end %>
     </table>
+    <% if session[:err_msg1].blank? && session[:err_msg2].blank? && session[:err_msg3].blank? && session[:err_msg4].blank?  %>
     <div id="add_class">
       <%= button_to("Add a class", '/lecturer', {class: "btn btn-default", id: "add_class", remote: true}) %>
     </div>
+	<% else %>
+		<% if !session[:err_msg1].blank?%>
+	   		<div class="alert alert-warning">
+      		<a href="#" class="close" data-dismiss="alert">&times;</a>
+      		<%= session[:err_msg1] %>
+      		<% session[:err_msg1] = nil %>
+  			</div>
+  		<% end %>
+		<% if !session[:err_msg2].blank?%>
+	   		<div class="alert alert-warning">
+      		<a href="#" class="close" data-dismiss="alert">&times;</a>
+      		<%= session[:err_msg2] %>
+      		<% session[:err_msg2] = nil %>
+  			</div>
+  		<% end %>		<% if !session[:err_msg3].blank?%>
+	   		<div class="alert alert-warning">
+      		<a href="#" class="close" data-dismiss="alert">&times;</a>
+      		<%= session[:err_msg3] %>
+      		<% session[:err_msg3] = nil %>
+  			</div>
+  		<% end %>		<% if !session[:err_msg4].blank?%>
+	   		<div class="alert alert-warning">
+      		<a href="#" class="close" data-dismiss="alert">&times;</a>
+      		<%= session[:err_msg4] %>
+      		<% session[:err_msg4] = nil %>
+  			</div>
+  		<% end %>	
+      <%= render partial: "form" %>
+    <% end %>
 </div>

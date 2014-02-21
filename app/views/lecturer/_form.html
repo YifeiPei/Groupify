@@ -1,27 +1,10 @@
 <%= form_for :course, {url: {controller: "class", action: "create"}, html: {role: "form", class: "col-xs-4 form-horizontal" , multipart: true}} do |f| %>
     <div class="form-group">
-      <%= f.label :name, "Class", class: "col-sm-4" %>
+      <%= f.label :name, "Class", class: "col-sm-4"  %>
       <div class="col-sm-8">
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, class: "form-control"%>
       </div>
     </div>
-
-
-
-
-
-  <!--  <div class="control-group">
-     <label class="control-label" for="description">File</label>
-     <div class="controls">
-      <input type="file" id="file">
-     </div>
-    </div> -->
-
-
-
-
-
-
     <div class="form-group">
       <%= f.label :file, "Data file", class: "col-sm-4" %>
       <div class="col-sm-8">
@@ -32,8 +15,6 @@
         </div>
       </div>  
     </div>
-
-
      <div class="form-group">
  		<%= f.label :group_size, "Group Size", class: "col-sm-4" %>
       <div class="col-sm-8">
