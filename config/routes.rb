@@ -32,6 +32,7 @@ end
   get "contact/contact"
   get "sort/index"
   get "contact/index"
+  get "about/index"
   get "class/index"
   get "lecturer/index"
   get "signup", :to => "signup#signup"
