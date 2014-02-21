@@ -9,7 +9,6 @@ class LoginController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       #flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.username}"
-      session[:err_msg] = []
       redirect_to "/lecturer"
     else
       flash[:notice] = "Invalid Username or Password"
