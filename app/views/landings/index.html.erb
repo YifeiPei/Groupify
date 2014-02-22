@@ -13,8 +13,16 @@
 
     <div class="navbar-form navbar-right">
      <% if session[:user_id] == nil %>
-      <a href="/signup/signup" class = "btn btn-success" >Sign Up</a>
-      <a href="/login/login" class = "btn btn-success" >Log In</a>   
+      <ul class="nav navbar-nav">
+                    <li><a href="/">Features</a>
+                    </li>
+                     <li><a href="/about/blog">Blog</a>
+                    </li>
+                    <li><a href="/signup/signup">Sign up!</a>
+                    </li>
+                </ul>
+
+      <a href="/login/login" class = "btn btn-success" >Log In</a>
    		<% else %>
       <a href="/lecturer" class = "btn btn-success" >Lecturer Home</a>
    		
