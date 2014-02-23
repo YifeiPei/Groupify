@@ -21,8 +21,23 @@
     padding-top:15px;
 }
 
+#calltoaction {
+    height: 95%;
+    width: 100%;
+    background-color: #364CF5;
+}
+
 #footernav {
     margin: 40px 20px 0px 20px;
+}
+
+#getstarted {
+    padding: 18px 28px;
+    font-size: 22px; 
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
 }
 
 #socialmediaicons {
