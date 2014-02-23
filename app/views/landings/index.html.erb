@@ -13,6 +13,7 @@
 
     <div class="navbar-form navbar-right">
      <% if session[:user_id] == nil %>
+      
       <ul class="nav navbar-nav">
                     <li><a href="/">Features</a>
                     </li>
@@ -22,9 +23,10 @@
                     </li>
                 </ul>
 
-      <a href="/login/login" class = "btn btn-success" >Log In</a>
-   		<% else %>
-      <a href="/lecturer" class = "btn btn-success" >Lecturer Home</a>
+      <a href="/login/login" class = "btn btn-success" >Log in</a>
+      
+  <% else %>
+      <a href="/lecturer" class = "btn btn-success" >Home</a>
    		
    		<% end %>
    		
@@ -58,11 +60,11 @@
         <p class="lead">We know that lecturers can spend hours, if not days, manually sorting students into groups for group based learning. Our web service will form groups for you, and notify your students.</p>
     </div>
 
+</div>
 
     <!-- /END THE FEATURETTES -->
 
-    <hr>
-
+    
     <!-- FOOTER -->
     <footer>
       <div class="row" >
@@ -82,5 +84,3 @@
       </div>
     </footer>
     <!-- /END OF FOOTER -->
-
-</div>
