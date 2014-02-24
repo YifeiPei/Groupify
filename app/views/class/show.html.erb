@@ -15,48 +15,53 @@
       <%= submit_tag 'Group', class: "btn" %>
     <% end %>
   	</div>
+  	<% if @current_course.grouped %>
     <div class="col-md-2" >
     <%= form_tag('/grouped') do %>
       <%= submit_tag 'View Groups', class: "btn" %>
     <% end %>
   	</div>
+  	<% end %>
     <div class="col-md-1" >
-    <%= form_tag() do %>
+    <%= form_tag('/contact/contact') do %>
       <%= submit_tag 'Contact', class: "btn" %>
     <% end %>
   	</div>
   
   </div>
   </br>
-<%  if @student_list != nil # Display list %>
+<%  if !@students.blank? # Display list %>
 <table class="table">
- 
-
-  <% @student_list.each_with_index do |student, index| %>
-    <% if index == 0 %>
+  <tr>
+    <th>Student Number</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Degree</th>
+    <% if @current_course.grouped %>
+    <th>Group Number</th>
+    <% end %>
+  </tr>    
       <tr>
-        <%  student.each do |col| %>
-          <th><%= col %> </th>
-        <% end %>
-      </tr>
-
-    <% elsif index != 0 %>
-      <tr>
-        <% student.each do |data| %>
-        <td> <%= data %> </td>
-        <% end %>
+        <% @students.each do |data| %>
+       	 <td> <%= data.student_id %> </td>
+        <td> <%= data.first_name %> </td>
+        <td> <%= data.last_name %> </td>
+        <td> <%= data.degree %> </td>
+     <% if @current_course.grouped %>
+    <td> <%= Group.find_by(:id => data.scgs.find_by(:student_id => data.id).group_id).number  %></td>
+    <% end %>       
       </tr>
     <% end %>
-  <% end %>
 </table>
-
 <% else %>
   <p> There are no student details uploaded for this course. </p>
-  <%= form_tag('/upload/upload_file', multipart: true) do %>
-
-    <%= label_tag(:file) %>
-    <%= file_field_tag(:file) %>
-    <%= submit_tag 'Upload' %>
-  <% end %>
+  <p> Please upload a csv file with student details in the following format:</p>
+  <p> Student number, first name, last name, degree</p>
+  <p> This can be exported from access adelaide.</p>
+ <%= form_tag '/upload/import', multipart: true do %>
+  <%= file_field_tag :file, class: "btn" %>
+  <%= submit_tag "Import", class: "btn" %>
+<% end %>
+   
 <% end %>
 </div>

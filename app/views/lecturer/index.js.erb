@@ -1,3 +1,15 @@
 var row = $('#add_class');
 var html_new_class = "<%= escape_javascript(render('form')) %>";
 row.html(html_new_class);
+
+$('#fileselectbutton').click(function(e){
+  $('#file').trigger('click');
+});
+
+$('#file').change(function(e){
+  var val = $(this).val();
+  var file = val.split(/[\\/]/);
+  $('#filename').val(file[file.length-1]);
+});
+
+$('#upload_tooltip').tooltip();

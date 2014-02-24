@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205014559) do
+ActiveRecord::Schema.define(version: 20140220045716) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140205014559) do
     t.integer  "semester"
     t.integer  "year"
     t.integer  "user_id"
+    t.boolean  "confirmed"
   end
 
   create_table "data_files", force: true do |t|
@@ -32,17 +33,27 @@ ActiveRecord::Schema.define(version: 20140205014559) do
   end
 
   create_table "groups", force: true do |t|
-    t.integer  "size"
-    t.integer  "student_id"
-    t.integer  "course_id"
+    t.string   "name"
+    t.integer  "number"
+    t.integer  "fitness"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
 
   create_table "landings", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scgs", force: true do |t|
+    t.integer  "size"
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "group_id"
   end
 
   create_table "sort_configs", force: true do |t|
@@ -57,13 +68,16 @@ ActiveRecord::Schema.define(version: 20140205014559) do
   end
 
   create_table "students", force: true do |t|
-    t.string   "name"
+    t.string   "student_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "degree"
+    t.integer  "course_id"
+    t.integer  "group_id"
     t.string   "email"
     t.integer  "gender"
     t.integer  "age"
     t.float    "GPA"
-    t.integer  "course_id"
-    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

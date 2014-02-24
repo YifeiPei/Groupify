@@ -10,7 +10,7 @@ class Upload < ActiveRecord::Base
   end
 
   def store_file
-    directory = 'uploads'
+    directory = "#{Rails.root}/uploads"
     if !Dir.exist?(directory)
       Dir.mkdir(directory)
     end

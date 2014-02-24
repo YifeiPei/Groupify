@@ -1,6 +1,6 @@
-class CreateGroups < ActiveRecord::Migration
+class CreateScgs < ActiveRecord::Migration
   def change
-    create_table :groups do |t|
+    create_table :scgs do |t|
       t.integer :size
       t.integer :student_id
       t.integer :course_id
