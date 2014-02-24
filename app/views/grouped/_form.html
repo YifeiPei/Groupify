@@ -1,4 +1,4 @@
-<%= form_for :course, {url: {controller: "class", action: "create"}, html: {role: "form", class: "col-xs-5 form-horizontal" , multipart: true}} do |f| %>
+<%= form_for :student, {url: {controller: "grouped", action: "add_student"}, html: {role: "form", class: "col-xs-5 form-horizontal" , multipart: true}} do |f| %>
  <%  if session[:err_msg][1].blank? %>
     <div class="form-group">
 <% else %>
@@ -6,42 +6,50 @@
  	<% session[:err_msg][1] = nil %>
 
 	<% end %>
-      <%= f.label :name, "Class", class: "col-sm-4"  %>
-      <div class="col-sm-8">
-        <%= f.text_field :name, class: "form-control"%>
+      <%= f.label :student_id, "Student ID", class: "col-sm-4"  %>
+      <div class="col-sm-4">
+        <%= f.text_field :student_id, class: "form-control"%>
       </div>
     </div>
- <%  if session[:err_msg][2].blank? && session[:err_msg][3].blank?%>
+ <%  if session[:err_msg][2].blank? %>
     <div class="form-group">
 <% else %>
     <div class="form-group has-warning">
  	<% session[:err_msg][2] = nil %>
+
+	<% end %>
+      <%= f.label :first_name, "First Name", class: "col-sm-4"  %>
+      <div class="col-sm-4">
+        <%= f.text_field :first_name, class: "form-control"%>
+      </div>
+    </div>
+    
+ <%  if session[:err_msg][3].blank? %>
+    <div class="form-group">
+<% else %>
+    <div class="form-group has-warning">
  	<% session[:err_msg][3] = nil %>
 	<% end %>
-	      <%= f.label :file, "Data file", class: "col-sm-4" %>
-      <div class="col-sm-8">
-        <%= file_field_tag :file, class: "btn" %>
-        <div class="dummyfile">
-          <%= text_field_tag "filename",nil, {class: "input disabled form-control", readonly: true} %>
-          <a id="fileselectbutton" class="btn btn-default">Choose...</a>
-     <%= image_tag("Actions-help-about-icon.png", id: "upload_tooltip", alt: "help icon", "data-toggle" => "tooltip", title: "Please select a CSV file exported from Access Adelaide") %>
-        </div>
-      </div>  
+      <%= f.label :last_name, "Last Name", class: "col-sm-4"  %>
+      <div class="col-sm-4">
+        <%= f.text_field :last_name, class: "form-control"%>
+      </div>
     </div>
-	 <%  if session[:err_msg][4].blank? %>
-   	 	<div class="form-group">
-	<% else %>
-    	<div class="form-group has-warning">
-	 	<% session[:err_msg][4] = nil %>
-	<% end %>
-	<%= f.label :group_size, "Group Size", class: "col-sm-4" %>
+    <div class="form-group">
+      <%= f.label :degree, "Degree", class: "col-sm-4"  %>
+      <div class="col-sm-6">
+        <%= f.text_field :degree, class: "form-control"%>
+      </div>
+    </div>
+   	 <div class="form-group">
+	<%= f.label :group_number, "Group Number", class: "col-sm-4" %>
     <div class="col-sm-8">
-		<%= number_field_tag 'group_size', nil, in: 1...10 %>
+		<%= number_field_tag 'group_number', nil, in: 1...1000 %>
     </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-4 col-sm-8">
-        <%= f.submit "Add", class: "btn btn-default" %>
+        <%= f.submit "Add", class: "btn" %>
       </div>
     </div>
 <% end %>
