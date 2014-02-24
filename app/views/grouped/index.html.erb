@@ -29,6 +29,7 @@ $(function() {
       <a href="#" class="close" data-dismiss="alert">&times;</a>
       These are the groups that has been confimed for your course
   </div>
+ <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
 <% end %>
  <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
 
