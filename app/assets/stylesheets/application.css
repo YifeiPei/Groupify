@@ -29,6 +29,10 @@
     width: 100%;
  }
 
+ .blogitem {
+     margin: 30px;
+}
+
 .invalid_notice {
 	color: red;
 }
