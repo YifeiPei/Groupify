@@ -13,6 +13,63 @@
  *= require_tree .
  */
 
+ body, html {
+    height:100%;
+    margin: 0;
+    padding: 0;
+ }
+
+ body {
+    padding-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+}
+
+ footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+ }
+
+ .blogitem {
+     margin: 30px;
+}
+
 .invalid_notice {
 	color: red;
 }
+
+.navbarbuttons {
+    padding-top:15px;
+}
+
+#calltoaction {
+    height: 95%;
+    width: 100%;
+}
+
+#footernav {
+    padding: 0px 20px 0px 20px;
+}
+
+#getstarted {
+    padding: 18px 28px;
+    font-size: 22px; 
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+#socialmediaicons {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+#socialmediaicons a:hover {
+    background-color: transparent;
+}
+
+footer {
+    background-color: #b0b0b0;
+    margin: 0px;
+}
+
