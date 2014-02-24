@@ -6,7 +6,7 @@
  	<% session[:err_msg][1] = nil %>
 
 	<% end %>
-      <%= f.label :student_id, "Student ID", class: "col-sm-4"  %>
+      <%= f.label :student_id, "Student ID*", class: "col-sm-4"  %>
       <div class="col-sm-4">
         <%= f.text_field :student_id, class: "form-control"%>
       </div>
@@ -18,7 +18,7 @@
  	<% session[:err_msg][2] = nil %>
 
 	<% end %>
-      <%= f.label :first_name, "First Name", class: "col-sm-4"  %>
+      <%= f.label :first_name, "First Name*", class: "col-sm-4"  %>
       <div class="col-sm-4">
         <%= f.text_field :first_name, class: "form-control"%>
       </div>
@@ -30,7 +30,7 @@
     <div class="form-group has-warning">
  	<% session[:err_msg][3] = nil %>
 	<% end %>
-      <%= f.label :last_name, "Last Name", class: "col-sm-4"  %>
+      <%= f.label :last_name, "Last Name*", class: "col-sm-4"  %>
       <div class="col-sm-4">
         <%= f.text_field :last_name, class: "form-control"%>
       </div>
