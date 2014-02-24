@@ -70,9 +70,9 @@ class GroupedController < LecturerApplicationController
   
   def drop_update
     @current_course = Course.find_by(user_id: session[:user_id], id: session[:course_id])
-  	@student = Student.find(params[:student_id])
-  	@scg = Scg.find_by(:student_id => params[:student_id], :course_id => @current_course.id)  
-	@student.update_all(group_id: params[:group_id])
-	@scg.update_all(group_id: params[:group_id])
+	Student.where(:id => params[:student_id]).update_all(group_id: params[:group_id])
+	Scg.where(:student_id => params[:student_id], :course_id => @current_course.id).update_all(group_id: params[:group_id])  
+   	redirect_to "/grouped"	
+  
   end
 end
