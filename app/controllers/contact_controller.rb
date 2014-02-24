@@ -18,6 +18,12 @@ class ContactController < ApplicationController
   end
 
   def notify_group
+    # See if this user has notified a class before, if not, set first_use
+    user = User.find_by(id: session[:user_id])
+    if user.first_use.blank?
+      user.first_use = Date.current
+      user.save
+    end
     @current_course = Course.find_by(id: session[:course_id])
 
     @group_count = Student.where(:course_id => @current_course.id).distinct.count(:group_id)
