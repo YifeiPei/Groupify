@@ -37,7 +37,7 @@ $(function() {
     <%= button_to("Add student", '/grouped', {class: "btn", id: "add_student", remote: true}) %>
 	</div>	
     <% else %>
-    <% for i in 1..3 %>
+   	 <% for i in 1..3 %>
   		<% if !session[:err_msg][i].blank?  %>
 	   		<div class="alert alert-warning">
       		<a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -47,7 +47,6 @@ $(function() {
    	<% end %>
     <%= render partial: "form" %>
   		<% end %>
-
 
 <% for i in 1..@group_count %>
   <% if i%2 == 1 %>
