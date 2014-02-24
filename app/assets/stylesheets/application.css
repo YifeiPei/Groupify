@@ -29,6 +29,10 @@
     width: 100%;
  }
 
+ #aboutfooter {
+     position: relative;
+}
+
  .blogitem {
      margin: 30px;
 }
