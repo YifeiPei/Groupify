@@ -79,4 +79,5 @@ Trunk::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 config.assets.precompile =  [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ]#[/^[-_a-zA-Z0-9]*\..*/]
+config.assets.precompile += %w( .svg .eot .woff .ttf )
 end

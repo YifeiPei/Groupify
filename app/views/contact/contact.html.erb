@@ -1,112 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Groupify</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../assets/stylesheets/bootstrap.css" rel="stylesheet">
-
-
-</head>
-
-<body>
-
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Groupify</a>
-            </div>
-
- 	<div class="navbar-form navbar-left">
-  <button onclick="window.location.href='/lecturer'" class = "btn btn-success">Home</button>
-  <button onclick="window.location.href='/class'" class = "btn btn-success">Classes</button>
-  <button onclick="window.location.href='/upload'" class = "btn btn-success">Upload Students</button>
-
-       </div>
- 	<div class="navbar-form navbar-right">
-  <button onclick="window.location.href='/'" class = "btn btn-success">Log Out</button>
-       </div>
-
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-<h2>Contact</h2>
-
-<br /><br />
-
-<%= form_tag("/email", :method => "post") do  %>
-	<div id="emailcontainer">
-		<div>
-			<%= label_tag(:to, "To: ", :class => 'emaillabel') %>
-			<%= text_area_tag(:to, params[:to], :rows => 5, :size => 50) %>
-		</div>
-		<%# since css doesn't recognize text field rows as vertical space, we need another 5 blank lines fo css to work %>
-		<br /><br /><br /><br />
-	
-		<div>
-			<%= label_tag(:cc, "Cc: ", :class => 'emaillabel') %>
-			<%= text_field_tag(:cc, params[:cc], :size => 40) %>
-		</div>
-		<br />
-		
-		<div>
-			<%= label_tag(:subject, "Subject: ", :class => 'emaillabel') %>
-			<%= text_field_tag(:subject, params[:subject], :size => 40) %>
-		</div>
-		<br />
-		
-		<div>
-			<%= label_tag(:message, "Message: ", :class => 'emaillabel') %>
-			<%= text_area_tag(:message, params[:message], :rows => 20, :cols => 50) %>
-		</div>
-		<br /><br />
+        <h1>Email to all students in <%= @current_course.name  %></h1>
+   <h3 style="color:#FF6633;"></h3>
+   <hr>	                                                
+    <%= form_tag(:action => 'send_email') do %>
+    <div class="row">
+	<div class="col-md-1">
+	<%= label_tag(:subject, "Subject: ") %>
 	</div>
-
-	<%= submit_tag("Send", :id => 'buttonSendEmail') %>
+	<div class="col-md-1">
+	<%= text_field_tag(:subject, nil, :size => "32", :placeholder => "Subject")  %>
+	</div>
+	</div>
+	<br />
+    <div class="row">
+	<div class="col-md-1">
+	<%= label_tag(:message, "Message: ") %>
+	</div>
+	<div class="col-md-1">
+	<%= text_area_tag(:message, nil, :size => "32x10", :placeholder => "Message") %>
+	</div>
+	</div>
+	<br /> <br /> 
+	<%= submit_tag "Send", class: "btn" %>
 <% end %>
+    <%= link_to "<button class= 'btn'>Back</button>".html_safe,  controller: "class", action: "show", id: @current_course.id %>
 
-<%= form_tag "/email/select", :method => "post" do %>
-	<% if !params[:staff].nil? %>	
-		<% params[:staff].each do |staff| %>
-		<%= hidden_field_tag "staff[]", staff %>
-	<% end %>
-	<% end %>
-	<%= submit_tag "Cancel", :id => "buttonCancelEmail" %>
-<% end %>
-    
-    
-    
-    
-    
-    
-    
-      <footer>
-
-            All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
-            <p>Copyright &copy; Groupify Pty Ltd 2013</p>
-        </footer>
-        <!-- /END OF FOOTER -->
-
-    </div>
-    <!-- /container -->
-
-    <!-- JavaScript -->
-    <script src="../../assets/javascripts/jquery-1.10.2.js"></script>
-    <script src="../../assets/javascripts/bootstrap.js"></script>
-
-</body>
-
-</html>
+ </div>

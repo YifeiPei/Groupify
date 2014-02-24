@@ -1,7 +1,11 @@
 class UploadController < ApplicationController
   def index
   end
-  
+  def import
+  	Student.import(params[:file],session[:course_id])
+	redirect_to "/class/show/#{session[:course_id]}"
+end
+
   def upload_file
     if params[:file]
       @upload = Upload.new
@@ -11,7 +15,7 @@ class UploadController < ApplicationController
       if @upload.save
         flash[:notice] = 'You uploaded ' + params[:file].original_filename #+ @upload.file_id
 		@file = Upload.find_by_id(@upload.id)
-        Course.where(:id => session[:course_id]).update_all(filelocation: "uploads/#{@file.file_id}")
+        Course.where(:id => session[:course_id]).update_all(filelocation: "#{@file.file_id}")
       else
         flash[:notice] = "An error occured"
       end

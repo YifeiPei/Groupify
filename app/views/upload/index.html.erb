@@ -46,14 +46,12 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-<%= form_tag('/upload/upload_file', multipart: true) do %>
-
-<%= label_tag(:file) %>
-<%= file_field_tag(:file) %>
-<%= submit_tag 'Upload' %>
+    
+ <%= form_tag '/upload/import', multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import", class: "btn" %>
 <% end %>
-    
-    
+   
       <footer>
 
             All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a>
