@@ -30,7 +30,7 @@ $(function() {
       These are the groups that has been confimed for your course
   </div>
 <% end %>
-<%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
+ <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
  <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
 
 <% for i in 1..@group_count %>
