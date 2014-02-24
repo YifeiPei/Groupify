@@ -1,62 +1,38 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><%=  image_tag( "Groupify2small.png", :alt => "Form groups quickly and easily" ) %></a>
 
+      <a class="navbar-brand" href="/"><%= image_tag( "Groupify2small.png", :alt => "Form groups quickly and easily" ) %></a>
     </div>
 
     <div class="navbar-form navbar-right">
-      
       <ul class="nav navbar-nav">
-                    <li><a href="/features">Features</a>
-                    </li>
-                     <li><a href="/about/blog">Blog</a>
-                    </li>
-     <% if session[:user_id] == nil %>
-                    <li><a href="/signup/signup">Sign up!</a>
-                    </li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/about/blog">Blog</a></li>
+        <li><a href="/signup/signup">Sign up!</a></li>
+      </ul>
 
-     <% end %>
-     
-                </ul>
-     <% if session[:user_id] == nil %>
-
-      <a href="/login/login" class = "btn btn-success" >Log in</a>
-      
-  <% else %>
-      <a href="/lecturer" class = "btn btn-success" >Home</a>
-   		
-   		<% end %>
-   		
-   	</div> <!-- /.navbar-collapse -->
-  </div><!-- /.container -->
-</nav>
-<div id="calltoaction">
-
-  <div class="header-image">
-
-    <div class="headline">
-        <div class="container">
-          <h1>Let your groups</h1>
-          <h2>fall into place</h2>
-          <a href="/signup/signup" class = "btn btn-success" id="getstarted">Get started!</a>
-        </div>
+      <% if session[:user_id] == nil %>
+        <a href="/login/login" class = "btn btn-success" >Log in</a>
+      <% else %>
+        <a href="/lecturer" class = "btn btn-success" >Home</a>
+      <% end %>
     </div>
+  </div>
+</nav>
 
-   
 
+<div class="container">
+<h1>Hello</h1>
 </div>
 
-</div>
 
-
-    
 <footer>
 <div class="container">
     <div class="row">
