@@ -59,29 +59,41 @@
     </div>
     <!-- /.container -->
 </nav>
+<div id="container">
 
 <%= yield %>
 
+<footer>
 <div class="container">
-      <footer id="lecturerfooter">
-            <div class="row">
-              <ul class="nav navbar-nav">
-                    <li><a href="/about">About</a>
-                    </li>
-                     <li><a href="/about/blog">Blog</a>
-                    </li>
-                    <li><a href="/contact">Contact</a>
-                    </li>
-                </ul>
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Groupify 2014</p>
-                </div>
-            </div>
-      </footer>
-        <!-- /END OF FOOTER -->
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="nav navbar-nav">
+          <li><a href="/about">About us</a></li>
+          <li><a href="/">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+   <div class="row"> 
+    <div class="col-sm-6">
+      <div style="padding:0px 15px">
+        <p>Copyright &copy; Groupify 2014</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6" id="socialmediaicons">
+      <a href="https://www.facebook.com/groupifyau"><%=  image_tag( "fb.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://plus.google.com/101720690552888097186" rel="publisher"><%=  image_tag( "google+.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://twitter.com/GoGroupify"><%=  image_tag( "twitter.png", :alt => "Form groups quickly and easily" ) %></a>
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><g:plusone></g:plusone>
+    </div>
+        
+    </div>
+  </div>
+</footer>
 
     </div>
     <!-- /container -->
-
+</div>
 </body>
 </html>
