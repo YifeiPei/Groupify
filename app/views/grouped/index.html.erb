@@ -1,8 +1,12 @@
 <script>
+$(document).ready(function() {
+  var par = $('table');
+  $(par).hide();
+  });
 $(function() {
   $("table").sortable({
     items: 'tbody > tr',
-    cursor: 'crosshair',
+    cursor: 'move',
     connectWith: 'table',
     dropOnEmpty: true,
     receive: function(e, ui){
@@ -11,8 +15,13 @@ $(function() {
 	}
   });
 });
-</script>
+function showGroup(msg) {
+    $('#' + msg).toggle(500);
+};
+$("h3").css('cursor', 'pointer');
+$("tbody").css('cursor', 'move');
 
+</script>
 <div class="container">
 
 <h1><%= @current_course.name %></h1>
@@ -55,8 +64,8 @@ $(function() {
   <% end%>
 
   <div class="col-md-6">
-    <h3>Group <%= i %></h3>
-   <table class="table">
+    <h3 onclick="showGroup(<%= i %>);" style="cursor: pointer">Group <%= i %></h3>
+   <table class="table" id = "<%= i %>">
     <thead>
       <tr>
         <th>Student Number</th>
@@ -64,7 +73,7 @@ $(function() {
         <th>Degree</th>
       </tr>
     </thead>
-    <tbody id = "<%= Group.find_by(:course_id => @current_course.id, :number => i).id %>">
+    <tbody id = "<%= Group.find_by(:course_id => @current_course.id, :number => i).id %>" style="cursor: move">
 
     <% @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>
       <% @students.each do |student| %>
