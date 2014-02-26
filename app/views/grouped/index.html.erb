@@ -20,6 +20,13 @@ function showGroup(msg) {
 };
 $("h3").css('cursor', 'pointer');
 $("tbody").css('cursor', 'move');
+function hideAll() {
+  var par = $('table');
+  $(par).hide();
+  };
+function showAll() {
+  var par = $('table');
+  $(par).show();};
 
 </script>
 <div class="container">
@@ -41,7 +48,7 @@ $("tbody").css('cursor', 'move');
   </div>
 <% end %>
  <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
- <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
+  <%= button_tag('Show All', {class: 'btn', onclick: "showAll();", type: 'button'}) %>
   <% if session[:err_msg][1].blank? && session[:err_msg][2].blank? && session[:err_msg][3].blank?  %>
  	<div id="add_student">
     <%= button_to("Add student", '/grouped', {class: "btn", id: "add_student", remote: true}) %>
@@ -57,6 +64,9 @@ $("tbody").css('cursor', 'move');
    	<% end %>
     <%= render partial: "form" %>
   		<% end %>
+ <%= button_tag('Hide All', {class: 'btn', onclick: "hideAll();", type: 'button'}) %>
+ <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
+
 
 <% for i in 1..@group_count %>
   <% if i%2 == 1 %>
