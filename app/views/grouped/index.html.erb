@@ -22,12 +22,12 @@ $(function() {
     <%= number_field_tag 'group_size', @old_size, in: 1...10 %>
     <br />
     <%= submit_tag 'Resort', class: "btn" %>
-    <%= link_to "<button class= 'btn'>Confirm Groups</button>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?"}} %>
+    <%= link_to "<button class= 'btn'>Confirm Groups</button>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?\n\nThis will send an email to all students to notify them of their groups."}} %>
   <% end %>
 <% else %>
   <div class="alert alert-info">
       <a href="#" class="close" data-dismiss="alert">&times;</a>
-      These are the groups that has been confimed for your course
+      These are the groups that have been confimed for your course
   </div>
 <% end %>
  <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
