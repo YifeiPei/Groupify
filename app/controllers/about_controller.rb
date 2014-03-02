@@ -7,4 +7,8 @@ class AboutController < ApplicationController
   def blog
     
   end
+
+  def privacy
+
+  end
 end
