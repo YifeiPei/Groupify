@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220045716) do
+ActiveRecord::Schema.define(version: 20140302232306) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140220045716) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "group_id"
+    t.integer  "group_id"
   end
 
   create_table "sort_configs", force: true do |t|

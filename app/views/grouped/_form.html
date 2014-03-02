@@ -44,7 +44,15 @@
    	 <div class="form-group">
 	<%= f.label :group_number, "Group Number", class: "col-sm-4" %>
     <div class="col-sm-8">
-		<%= number_field_tag 'group_number', nil, in: 1...1000 %>
+
+	 <select id="group_number" name="group_number">
+    <option selected="selected" value = "-1">Auto Assign</option>
+    <option value = "<%= @group_count+1 %>">New Group</option>
+	<% for i in 1..@group_count %>
+  	  <option value = "<%= i %>"><%= i %></option>
+     <% end %>
+    </select>
+ 
     </div>
     </div>
     <div class="form-group">

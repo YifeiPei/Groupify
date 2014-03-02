@@ -49,7 +49,20 @@ class GroupedController < LecturerApplicationController
     	scg = Scg.new
     	scg.student_id = params[:student][:id]
     	scg.course_id = @current_course.id
-    	if !params[:group_number].blank?
+    	if params[:group_number].to_i == -1
+     		@scg_group_size = Hash.new
+    		@scgs_list = Scg.find(:all, :conditions => {:course_id => @current_course.id})
+    		@scgs_list.each do |each_scg|			
+    			if @scg_group_size[each_scg.group_id].nil?
+    				@scg_group_size[each_scg.group_id] = 1
+    			else
+    				@scg_group_size[each_scg.group_id] += 1 
+    			end
+    		end
+    		@min_number = @scg_group_size.min_by{|k,v| v}
+    		scg.group_id = @min_number[0]
+    		student.group_id = @min_number[0]
+    	else
     		group = Group.find_by(:course_id => @current_course.id, :number => params[:group_number]) || Group.new
    		 	group.number = params[:group_number]
         	group.course_id = @current_course.id
@@ -61,7 +74,6 @@ class GroupedController < LecturerApplicationController
     	student.scgs << scg
   	 	student.save!
   	 	redirect_to "/grouped"
-
 	else
    		redirect_to "/grouped"
    	end
