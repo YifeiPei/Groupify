@@ -1,18 +1,33 @@
 <script>
+
 $(document).ready(function() {
   var par = $('table');
   $(par).hide();
-  });
-$(function() {
+
+  function amountOfStudents() {
+    $("table").each(function() {
+      var amount = $($(this).children("tbody")[0]).children('tr').length;
+      var groupCount = $(this).siblings(".groupcount")[0];
+      var groupAmount = $(groupCount).children(".groupcountnumber")[0];
+      $(groupAmount).html(amount);
+    });
+
+  }
+
   $("table").sortable({
     items: 'tbody > tr',
     cursor: 'move',
     connectWith: 'table',
     dropOnEmpty: true,
     receive: function(e, ui){
-      $(this).find("tbody").append(ui.item);
-	  $.post('/grouped/drop_update', {student_id: ui.item.attr("id"), group_id: $(this).find("tbody").attr("id")});
-	}
+
+      // only append to tbody if the row body is empty
+      if ($(this).find("tbody").children("tr").length == 0) {
+        $(this).find("tbody").append(ui.item);
+      }
+      amountOfStudents(ui);
+      $.post('/grouped/drop_update', {student_id: ui.item.attr("id"), group_id: $(this).find("tbody").attr("id")});
+    }
   });
 });
 function showGroup(msg) {
@@ -27,6 +42,8 @@ function hideAll() {
 function showAll() {
   var par = $('table');
   $(par).show();};
+
+
 
 </script>
 <div class="container">
@@ -70,13 +87,16 @@ function showAll() {
 
 
 <% for i in 1..@group_count %>
+  <% @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>
+
   <% if i%2 == 1 %>
       <div class="row">
   <% end%>
 
   <div class="col-md-6">
-    <h3 onclick="showGroup(<%= i %>);" style="cursor: pointer">Group <%= i %></h3>
-   <table class="table" id = "<%= i %>">
+    <h3 onclick="showGroup(<%= i %>);" style="cursor: pointer; display: inline-block">Group <%= i %></h3>
+    <div class="groupcount">(<span class="groupcountnumber"><%= @students.count %></span> students)</div>
+    <table class="table" id = "<%= i %>">
     <thead>
       <tr>
         <th>Student Number</th>
@@ -86,7 +106,6 @@ function showAll() {
     </thead>
     <tbody id = "<%= Group.find_by(:course_id => @current_course.id, :number => i).id %>" style="cursor: move">
 
-    <% @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>
       <% @students.each do |student| %>
         <tr id = "<%= student.id %>" >
           <td><%= student.student_id %></td>
