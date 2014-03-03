@@ -1,5 +1,6 @@
 var row = $('#add_student');
 var html_new_student = "<%= escape_javascript(render('form')) %>";
+$('#add_student_button').hide();
 row.html(html_new_student);
 
 $('#fileselectbutton').click(function(e){
