@@ -14,13 +14,25 @@ Trunk::Application.routes.draw do
  resources :upload do
   collection { post :import }
 end
-
+ resources :lecturer do
+  collection { post :create }
+end
+ resources :lecturer do
+  collection { post :import }
+end
+ resources :class do
+  collection { post :create }
+end
+ resources :class do
+  collection { post :import }
+end
   get "login/login"
   get "signup/signup"
 
   get "contact/contact"
   get "sort/index"
   get "contact/index"
+  get "about/index"
   get "class/index"
   get "lecturer/index"
   get "signup", :to => "signup#signup"

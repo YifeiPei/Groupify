@@ -1,3 +1,11 @@
 // Place all the styles related to the lecturer controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#file {
+   display: none;
+}
+   
+.dummyfile input[type="text"] {
+   width: 120px;
+   display: inline;
+}

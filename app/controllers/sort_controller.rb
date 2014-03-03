@@ -10,7 +10,12 @@ class SortController < ApplicationController
 
   def sort
     # Check if course is already grouped
-   
+	
+    @current_course = Course.find_by(id: session[:course_id])
+	if @current_course.grouped
+		Group.destroy_all(:course_id => session[:course_id])
+	end
+	
     @existing_config = SortConfig.find_by(course_id: session[:course_id])
   	if @existing_config.blank?
       redirect_to '/sort/index'
@@ -41,6 +46,7 @@ class SortController < ApplicationController
     for count in 0...number_of_groups do
       groups << Group.new do |group|
         group.number = count + 1
+        group.course_id = course.id
       end
       groups[count].save
     end
@@ -72,10 +78,11 @@ class SortController < ApplicationController
     scg = Scg.where(student_id: student.id, course_id: student.course_id).take
     group = groups[group_numbers[index][1]-1]
     item = {"group_id" => group.id}
-
     # The following command didn't work
     #scg.update(group_id: group.id)
 
+	student.group_id = group.id
+	student.save
     scg.group_id = group.id
     scg.save
 
@@ -88,7 +95,7 @@ class SortController < ApplicationController
     course.grouped = true
     course.save
 
-    redirect_to '/class/sorted'
+    redirect_to '/grouped'
   end
   
   def save_config  
@@ -110,7 +117,7 @@ class SortController < ApplicationController
        	flash[:color] = "invalid"
     	end
     else
-   	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
+   	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], group_size: params[:group_size], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
     end
     # Run sort algorithm
     sort

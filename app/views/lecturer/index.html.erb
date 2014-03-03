@@ -1,39 +1,63 @@
 <div class="container">
   <!-- List of courses this lecture teaches -->
   <h1>Classes</h1>
-  <div class="row" style="padding-bottom: 1em; width: 300px">
-    <div class="col-sm-10"><%= select_tag "View", "<option>Current &amp; Future</option><option>Current</option><option>Custom</option>".html_safe, class: "form-control input-sm" %></div>
-    </div>
+
     <table class="table">
     <tr>
       <th>Course name</th>
       <th>Number of students</th>
-      <th>Study Period</th>
-      <th>Grouped</th>
+        <th>Number of groups</th>
+    <th>Confirmed</th>
       <th>Tools</th>
     </tr>
 
   <% if @courses != nil && @courses.count > 0 %>
        <% @courses.each do |course| %>
           <tr>
-            <td><%= link_to course.name, controller: "class", action: "show", id: course.id %></td>
+            <td><%= link_to course.name, controller: "grouped", action: "index", id: course.id %></td>
             <td> <%= Student.find(:all, :conditions => {:course_id => course.id}).count  %></td>
-            <td>Semester 1, 2014</td>
+       <td><%= Student.where(:course_id => course.id).distinct.count(:group_id) =%> </td>
+
             <td>
-            <% if course.grouped %>
+            <% if course.confirmed %>
             	Yes
             <% else %>
             	No
             <% end %>
-            
             </td>
-            <td><%= link_to "Delete", {controller: "lecturer", action: "delete" , id: course.id}, {data:{confirm: "You have students in this class. \nAre you sure you want to delete #{course.name}?"}} %>
-             <a href="#">Edit</a></td>
+            <td>
+            <%= link_to "Delete", {controller: "lecturer", action: "delete" , id: course.id}, {data:{confirm: "You have students in this class. \nAre you sure you want to delete #{course.name}?"}} %>
+             </td>
           </tr>
         <% end %>
     <% end %>
     </table>
+
+  <% if session[:err_msg][1].blank? && session[:err_msg][2].blank? && session[:err_msg][3].blank? && session[:err_msg][4].blank?  %>
     <div id="add_class">
       <%= button_to("Add a class", '/lecturer', {class: "btn btn-default", id: "add_class", remote: true}) %>
-    </div>
+    </div>	
+    <% else %>
+    <% for i in 1..4 %>
+  		<% if !session[:err_msg][i].blank?  %>
+	   		<div class="alert alert-warning">
+      		<a href="#" class="close" data-dismiss="alert">&times;</a>
+      		<%= session[:err_msg][i] %>
+  			</div>
+  		<% end %>
+   	<% end %>
+    <%= render partial: "form" %>
+<script>
+  $('#fileselectbutton').click(function(e){
+    $('#file').trigger('click');
+  });
+
+  $('#file').change(function(e){
+    var val = $(this).val();
+    var file = val.split(/[\\/]/);
+    $('#filename').val(file[file.length-1]);
+  });
+  $('#upload_tooltip').tooltip();
+</script>
+  		<% end %>
 </div>

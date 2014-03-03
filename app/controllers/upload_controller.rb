@@ -2,7 +2,7 @@ class UploadController < ApplicationController
   def index
   end
   def import
-  Student.import(params[:file],session[:course_id])
+  	Student.import(params[:file],session[:course_id])
 	redirect_to "/class/show/#{session[:course_id]}"
 end
 

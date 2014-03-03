@@ -1,5 +1,5 @@
 gem 'roo'
-
+gem "mail", "2.5.4"
 source 'https://rubygems.org'
 gem 'bootstrap-sass'
 group :development do
