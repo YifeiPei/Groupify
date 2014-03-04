@@ -1,0 +1,97 @@
+<body>
+
+  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/"><%= image_tag( "Groupify2small.png", :alt => "Form groups quickly and easily" ) %></a>
+    </div>
+
+    <div class="navbar-form navbar-right">
+      <ul class="nav navbar-nav">
+        <li><a href="/features">Features</a></li>
+        <li><a href="/about/blog">Blog</a></li>
+        <li><a href="/signup/signup">Sign up!</a></li>
+      </ul>
+
+      <% if session[:user_id] == nil %>
+        <a href="/login/login" class = "btn btn-success" >Log in</a>
+      <% else %>
+        <a href="/lecturer" class = "btn btn-success" >Home</a>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<div id="container">
+
+<div class="container" style="padding-bottom: 2em">
+<h1>Privacy Policy</h1>
+<p>Groupify is a business that can sort a cohort of people into smaller groups. Often, those groups will be formed to achieve various goals, such as performing well together, or being diverse. To achieve these goals, Groupify uses some personal and sensitive information about the people in the groups. This privacy policy covers the personal and sensitive information Groupify collects about the people who it allocates into groups, as well as the information we collect about the users who manage those groups.</p>
+<p>The kinds of personal information we collect are name, student id, degree of study, availability,
+personality type, age, academic scores, and interests.</p>
+<p>We collect some personal information about students from the lecturer of courses which engage
+Groupify to allocate their students into groups, by asking them to upload a csv file with that
+information. We do this because it is impracticable to collect this information directly from students
+in a short time at the start of the semester and if we do not have this information we would be
+unable to sort students into groups effectively and communicate this to students and lecturer. All
+students in the course would suffer as the groupings would be sub-optimal.</p>
+<p>We also collect personal information directly from students. If we collect sensitive information we
+will do so from individuals directly, with your consent.</p>
+<p>We hold this information in a secure database on a virtual server located in Australia, applying
+community endorsed best practices in security.</p>
+<p>Our primary purpose for collecting this information is to allocate students to groups which are
+balanced across the class and which are optimised within each group for criteria such as diversity or
+working well together. Our secondary purposes for collecting this information are to facilitate
+communication between lecturer and students, and to do performance tracking of student efforts.
+This data may be made available to the institution at which the course is being held.</p>
+<p>We use this information to allocate students into groups, using a sophisticated algorithm. We also
+de-identify this information (by wiping names and student ids) and use it to assess the effectiveness
+of our algorithm by comparing the performance and satisfaction of groups with different
+compositions and seeing how we can help people perform better together and have greater
+satisfaction.</p>
+<p>Individuals can access the information we have for themselves by sending an email to
+contact@groupify.com.au with "Request for Personal Information" in the subject, and their name
+and student number in the body. We will only be able to send out information to the email address
+that we have on file.</p>
+<p>The information we collect won't go overseas. We store it on servers based in Australia, and we don't provide it to anyone else, except in some cases the institution that your course is held at. If you would like to make a complaint, email us at contact@groupify.com.au with "Complaint" in the subject line. From time to time we may update this privacy policy, when we do we will post it on our site, and may notify our users of this
+by email.</p>
+
+<%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/about/export_privacy'", type: 'button'}) %>
+</div>
+
+<footer id="aboutfooter">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="nav navbar-nav">
+          <li><a href="/about">About us</a></li>
+          <li><a href="/about/privacy">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+   <div class="row">
+    <div class="col-sm-6">
+      <div style="padding:0px 15px">
+      <p>All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a></p>
+      <p>Copyright &copy; Groupify 2014</p>
+    </div>
+    </div>
+
+    <div class="col-sm-6" id="socialmediaicons">
+      <a href="https://www.facebook.com/groupifyau"><%=  image_tag( "fb.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://plus.google.com/101720690552888097186" rel="publisher"><%=  image_tag( "google+.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://twitter.com/GoGroupify"><%=  image_tag( "twitter.png", :alt => "Form groups quickly and easily" ) %></a>
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><g:plusone></g:plusone>
+    </div>
+
+    </div>
+  </div>
+</footer>
+</div>
