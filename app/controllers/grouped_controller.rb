@@ -12,6 +12,8 @@ class GroupedController < LecturerApplicationController
       @group_count = Student.where(:course_id => @current_course.id).distinct.count(:group_id)
       @old_size = SortConfig.find_by(:course_id => @current_course.id).group_size
  #	  @unsort_students = Student.find(:all, :conditions => {:course_id => session[:course_id], :group_id => nil})
+  @student_list = Student.find(:all, :group => "degree", :order => "degree", :conditions => {:course_id => session[:course_id]} )
+
   end
   
   def export_csv

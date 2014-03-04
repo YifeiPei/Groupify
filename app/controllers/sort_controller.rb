@@ -14,6 +14,7 @@ class SortController < ApplicationController
     @current_course = Course.find_by(id: session[:course_id])
 	if @current_course.grouped
 		Group.destroy_all(:course_id => session[:course_id])
+   	 	Scg.where(:course_id => session[:course_id]).update_all(group_id: nil)		
 	end
 	
     @existing_config = SortConfig.find_by(course_id: session[:course_id])
@@ -128,4 +129,56 @@ class SortController < ApplicationController
   
   end
   
+  def advanced_sort
+      # Check if course is already grouped	
+    @current_course = Course.find_by(id: session[:course_id])
+	if @current_course.grouped
+		Group.destroy_all(:course_id => session[:course_id])
+   	 	Scg.where(:course_id => session[:course_id]).update_all(group_id: nil)		
+	end
+	@existing_config = SortConfig.find_by(course_id: session[:course_id])
+  	if @existing_config.blank?
+      redirect_to '/sort/index'
+    end
+    
+#####  Data preparation ##########
+
+   @student_list = Student.find(:all, :order => "degree.count", :conditions => {:course_id => session[:course_id]} )
+    # Set parameters
+    group_size = @existing_config.group_size
+    # Find out number of students in course
+    total_students = student_list.count
+    # Calculate number of groups
+    number_of_groups = total_students / group_size
+    # Create new groups in groups table
+    groups = []	
+    for count in 0...number_of_groups do
+      groups << Group.new do |group|
+        group.number = count + 1
+        group.course_id = course.id
+      end
+      groups[count].save
+    end	
+    #check the number of same degree for different degree
+	 	
+  @student_list = Student.find(:all, :order => "degree", :conditions => {:course_id => session[:course_id]} )
+	 @degree_number = Hash.new
+     @degree_number = Student.where(:course_id => @current_course.id).group('students.degree').count
+
+     @degree_number = @degree_number.sort_by {|k,v| v}.reverse
+     @new = @degree_number.shift 
+	 @degree_number << @new 	
+	
+###### Start Sorting #######
+
+
+
+
+
+
+
+##### Store Results #########
+	
+	
+  end
 end
