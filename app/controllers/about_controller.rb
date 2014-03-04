@@ -13,7 +13,7 @@ class AboutController < ApplicationController
   end
 
   def export_privacy
-    send_file "#{Rails.root}/public/GroupifyPrivacyPolicy.v01.pdf" 
+    send_file "#{Rails.root}/public/GroupifyPrivacyPolicy.pdf" 
   end
 
 end
