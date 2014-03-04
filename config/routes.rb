@@ -33,6 +33,7 @@ end
   get "contact/contact"
   get "sort/index"
   get "contact/index"
+  get "about/privacy"
   get "about/index"
   get "class/index"
   get "lecturer/index"
