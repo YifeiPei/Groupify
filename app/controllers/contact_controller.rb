@@ -46,6 +46,9 @@ class ContactController < ApplicationController
 	 @current_course.save
    	redirect_to "/grouped/index/#{session[:course_id]}"
   end
-  
+   def notify_new_student
+   
+   end
+ 
   
 end
