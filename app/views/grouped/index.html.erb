@@ -3,7 +3,7 @@
 $(document).ready(function() {
   var par = $('table');
   $(par).hide();
-
+  $("#deleteStudentMsg").hide();
   function amountOfStudents() {
     $("table").each(function() {
       var amount = $($(this).children("tbody")[0]).children('tr').length;
@@ -11,9 +11,7 @@ $(document).ready(function() {
       var groupAmount = $(groupCount).children(".groupcountnumber")[0];
       $(groupAmount).html(amount);
     });
-
   }
-
   $("table").sortable({
     items: 'tbody > tr',
     cursor: 'move',
@@ -30,6 +28,9 @@ $(document).ready(function() {
     }
   });
 });
+function deleteStudent(){
+  $("#deleteStudentMsg").show();
+};
 function showGroup(msg) {
     $('#' + msg).toggle(500);
 };
@@ -42,10 +43,8 @@ function hideAll() {
 function showAll() {
   var par = $('table');
   $(par).show();};
-
-
-
 </script>
+
 <div class="container">
 
 <h1><%= @current_course.name %></h1>
@@ -63,8 +62,13 @@ function showAll() {
       <a href="#" class="close" data-dismiss="alert">&times;</a>
       These are the groups that has been confimed for your course
   </div>
+    <div id = "deleteStudentMsg" class="alert alert-info" >
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      You can click on a student to delete him
+  </div>
 <% end %>
  <%= button_to("Add student", '/grouped', {class: "btn", remote: true, form: {"style" => "display: inline-block", id: "add_student_button"}}) %>
+  <%= button_tag('Delete student', {class: 'btn', onclick: "deleteStudent();", type: 'button'}) %>
  <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
  <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
   <div id="add_student" class="row">
