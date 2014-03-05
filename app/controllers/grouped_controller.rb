@@ -11,6 +11,7 @@ class GroupedController < LecturerApplicationController
     end
       @group_count = Student.where(:course_id => @current_course.id).distinct.count(:group_id)
       @old_size = SortConfig.find_by(:course_id => @current_course.id).group_size
+ #	  @unsort_students = Student.find(:all, :conditions => {:course_id => session[:course_id], :group_id => nil})
   end
   
   def export_csv
@@ -77,5 +78,14 @@ class GroupedController < LecturerApplicationController
 	else
    		redirect_to "/grouped"
    	end
+  end
+  
+  def drop_update
+    @current_course = Course.find_by(user_id: session[:user_id], id: session[:course_id])
+	
+	Student.where(:id => params[:student_id]).update_all(group_id: params[:group_id])
+	Scg.where(:student_id => params[:student_id], :course_id => @current_course.id).update_all(group_id: params[:group_id])  
+   	redirect_to "/grouped"	
+  
   end
 end
