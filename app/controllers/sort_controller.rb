@@ -121,20 +121,16 @@ class SortController < ApplicationController
    	 SortConfig.where(:course_id => session[:course_id]).update_all(course_id: session[:course_id], group_size: params[:group_size], algorithm: params[:algorithm], age: params[:age], gpa: params[:gpa], degree: params[:degree])
     end
     # Run sort algorithm
-    sort
-    #redirect_to '/class/sorted'
+    advanced_sort
   end
   
-  def start_sort
-  
-  end
-  
-  def advanced_sort
+   def advanced_sort
       # Check if course is already grouped	
     @current_course = Course.find_by(id: session[:course_id])
 	if @current_course.grouped
 		Group.destroy_all(:course_id => session[:course_id])
    	 	Scg.where(:course_id => session[:course_id]).update_all(group_id: nil)		
+   	 	Student.where(:course_id => session[:course_id]).update_all(group_id: nil)		
 	end
 	@existing_config = SortConfig.find_by(course_id: session[:course_id])
   	if @existing_config.blank?
@@ -143,42 +139,158 @@ class SortController < ApplicationController
     
 #####  Data preparation ##########
 
-   @student_list = Student.find(:all, :order => "degree.count", :conditions => {:course_id => session[:course_id]} )
+  @student_list = Student.find(:all, :order => "degree", :conditions => {:course_id => session[:course_id]} )
     # Set parameters
     group_size = @existing_config.group_size
     # Find out number of students in course
-    total_students = student_list.count
+    total_students = @student_list.count
     # Calculate number of groups
     number_of_groups = total_students / group_size
+    reminder = total_students % group_size
     # Create new groups in groups table
     groups = []	
     for count in 0...number_of_groups do
       groups << Group.new do |group|
         group.number = count + 1
-        group.course_id = course.id
+        group.course_id = session[:course_id]
       end
       groups[count].save
     end	
     #check the number of same degree for different degree
-	 	
-  @student_list = Student.find(:all, :order => "degree", :conditions => {:course_id => session[:course_id]} )
-	 @degree_number = Hash.new
-     @degree_number = Student.where(:course_id => @current_course.id).group('students.degree').count
 
-     @degree_number = @degree_number.sort_by {|k,v| v}.reverse
-     @new = @degree_number.shift 
-	 @degree_number << @new 	
-	
+	@student_new_list = Hash.new
+	@student_list.each do |each_student|
+		if @student_new_list[each_student.degree].blank?
+			@student_new_list[each_student.degree] = []
+			@student_new_list[each_student.degree] << each_student.id
+		else
+			@student_new_list[each_student.degree] << each_student.id
+		end
+	end
+	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
+	@group_list = Group.find(:all, :order => "id", :conditions => {:course_id => session[:course_id]})	
+
+	@stop_point = 0
+	over = false
 ###### Start Sorting #######
+	@student_new_list.each do |key, student_list_by_degree|
+		diff = student_list_by_degree.length 
+		while diff > number_of_groups do
+			diff -= number_of_groups
+		end
+		if student_list_by_degree.length > number_of_groups
+			over = true
+		else
+			over = false
+		end	
+		while !student_list_by_degree.empty? do
+			@group_list.each do |each_group|
+				if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
+					if reminder > 0
+						reminder = reminder - 1
+					else
+						next
+					end
+				end
+				if over == true && student_list_by_degree.length <= diff
+					if each_group.id <= @stop_point
+						next
+					end
+				end
+				each_student_id = student_list_by_degree.shift
+				@current_student_id = each_student_id	 
+   	 			Scg.where(:course_id => session[:course_id], :student_id => @current_student_id).update_all(group_id: each_group.id)		
+   	 			Student.where(:id => @current_student_id).update_all(group_id: each_group.id)			
+				if student_list_by_degree.empty? && over == true
+					@stop_point = each_group.id
+				end
+			end
+		end
+	end
+##### redirect  #########	
+    redirect_to '/grouped'
+	
+end
 
+  
+  
+  
+  
+  
+  ##########  shitty one just ignore ####################
+  
+  
+  def shitty_sort
+      # Check if course is already grouped	
+    @current_course = Course.find_by(id: session[:course_id])
+	if @current_course.grouped
+		Group.destroy_all(:course_id => session[:course_id])
+   	 	Scg.where(:course_id => session[:course_id]).update_all(group_id: nil)		
+   	 	Student.where(:course_id => session[:course_id]).update_all(group_id: nil)		
+	end
+	@existing_config = SortConfig.find_by(course_id: session[:course_id])
+  	if @existing_config.blank?
+      redirect_to '/sort/index'
+    end
+    
+#####  Data preparation ##########
 
+  @student_list = Student.find(:all, :order => "degree", :conditions => {:course_id => session[:course_id]} )
+    # Set parameters
+    group_size = @existing_config.group_size
+    # Find out number of students in course
+    total_students = @student_list.count
+    # Calculate number of groups
+    number_of_groups = total_students / group_size
+    reminder = total_students % group_size
+    # Create new groups in groups table
+    groups = []	
+    for count in 0...number_of_groups do
+      groups << Group.new do |group|
+        group.number = count + 1
+        group.course_id = session[:course_id]
+      end
+      groups[count].save
+    end	
+    #check the number of same degree for different degree
 
+	@student_new_list = Hash.new
+	@student_list.each do |each_student|
+		if @student_new_list[each_student.degree].blank?
+			@student_new_list[each_student.degree] = []
+			@student_new_list[each_student.degree] << each_student.id
+		else
+			@student_new_list[each_student.degree] << each_student.id
+		end
+	end
+	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
+	@group_list = Group.find(:all, :conditions => {:course_id => session[:course_id]})	
 
-
-
-
+###### Start Sorting #######
+while !@student_new_list.empty?  do
+	@student_new_list.each do |key, student_list_by_degree|
+		@group_list.each do |each_group|
+			if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
+				if reminder > 0
+					reminder = reminder - 1
+				else
+					next
+				end
+			end
+			@current_student_id = student_list_by_degree.shift	 
+   	 		Scg.where(:course_id => session[:course_id], :student_id => @current_student_id).update_all(group_id: each_group.id)		
+   	 		Student.where(:id => @current_student_id).update_all(group_id: each_group.id)			
+		end
+		if student_list_by_degree.empty?
+			@student_new_list.delete(key)
+		end
+	end
+	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
+	@group_list = @group_list.reverse
+	end
 ##### Store Results #########
 	
+    redirect_to '/grouped'
 	
   end
 end

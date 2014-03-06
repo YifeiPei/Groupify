@@ -12,7 +12,25 @@ class GroupedController < LecturerApplicationController
       @group_count = Student.where(:course_id => @current_course.id).distinct.count(:group_id)
       @old_size = SortConfig.find_by(:course_id => @current_course.id).group_size
  #	  @unsort_students = Student.find(:all, :conditions => {:course_id => session[:course_id], :group_id => nil})
-  @student_list = Student.find(:all, :group => "degree", :order => "degree", :conditions => {:course_id => session[:course_id]} )
+  @student_list = Student.find(:all, :order => "degree", :conditions => {:course_id => session[:course_id]} )
+	@student_new_list = Hash.new
+	@student_list.each do |each_student|
+		if @student_new_list[each_student.degree].blank?
+			@student_new_list[each_student.degree] = []
+			@student_new_list[each_student.degree] << each_student.id
+		else
+			@student_new_list[each_student.degree] << each_student.id
+		end
+	end
+	     @student_new_list = @student_new_list.sort_by {|k,v| v.length}.reverse
+
+	 @degree_number = Hash.new
+     @degree_number = Student.where(:course_id => @current_course.id).group('students.degree').count
+
+     @degree_number = @degree_number.sort_by {|k,v| v}.reverse
+   #  @new = @degree_number.shift 
+	 #@degree_number << @new 
+ 	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
 
   end
   
