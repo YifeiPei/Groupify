@@ -31,7 +31,7 @@ $(document).ready(function() {
 });
 function deleteStudent(){
   	$("#deleteStudentMsg").show();
-	$("tbody").css('cursor', 'move');
+	$("tbody").css('cursor', 'pointer');
  	$("tbody").click(function(e, ui){
 	    yesnodialog('Comfirm', 'Cancel', $(this), $(this).find("tr").attr("id"));
 	});
