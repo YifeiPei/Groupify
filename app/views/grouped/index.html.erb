@@ -85,6 +85,7 @@ function showAll() {
  <%= button_tag('Hide All', {class: 'btn', onclick: "hideAll();", type: 'button'}) %>
 <%= debug(@degree_number) %>
 
+<%= debug(@reminder) %>
 
 <% for i in 1..@group_count %>
   <% @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id}) %>

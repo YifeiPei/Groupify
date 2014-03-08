@@ -31,7 +31,7 @@ class GroupedController < LecturerApplicationController
    #  @new = @degree_number.shift 
 	 #@degree_number << @new 
  	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
-
+	@reminder = session[:reminder]
   end
   
   def export_csv
