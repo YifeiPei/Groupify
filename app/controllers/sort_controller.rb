@@ -171,12 +171,19 @@ class SortController < ApplicationController
 	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
 	@group_list = Group.find(:all, :order => "id", :conditions => {:course_id => session[:course_id]})	
 	save_point = -1
-	temp_group_id = 0
 ###### Start Sorting #######
+	##
+	##	every new round of each degree, start from a save point which store the last group id that previous degree finish at
+	##
+	# get each value in hash
 	@student_new_list.each do |key, student_list_by_degree|
-		while !student_list_by_degree.empty? do					
+		# stop when no student in the list 
+		while !student_list_by_degree.empty? do	
+			# get groups to put the student in				
 			@group_list.each do |each_group|
+				# ignore the groups that before the save point
 				if each_group.id > save_point || save_point == number_of_groups
+					# ignore the groups that is full, unless we have reminder
 					if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
 						if reminder > 0
 							reminder = reminder - 1
@@ -191,6 +198,7 @@ class SortController < ApplicationController
 					@current_student_id = each_student_id	 
    	 				Scg.where(:course_id => session[:course_id], :student_id => @current_student_id).update_all(group_id: each_group.id)		
    	 				Student.where(:id => @current_student_id).update_all(group_id: each_group.id)			
+					# save save_point if the current degree list fininshes
 					if student_list_by_degree.empty?
 						save_point = each_group.id
 						break
