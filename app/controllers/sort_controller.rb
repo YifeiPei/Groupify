@@ -124,6 +124,7 @@ class SortController < ApplicationController
     advanced_sort
   end
   
+  ########## This is our latest algorithm ##########
   
    def advanced_sort
       # Check if course is already grouped	
@@ -147,7 +148,6 @@ class SortController < ApplicationController
     total_students = @student_list.count
     # Calculate number of groups
     number_of_groups = total_students / group_size
-    reminder = total_students % group_size
     # Create new groups in groups table
     groups = []	
     for count in 0...number_of_groups do
@@ -171,6 +171,7 @@ class SortController < ApplicationController
 	@student_new_list = Hash[@student_new_list.sort_by {|k,v,c| v.length}.reverse]
 	@group_list = Group.find(:all, :order => "id", :conditions => {:course_id => session[:course_id]})	
 	save_point = -1
+	grouped_count = 0
 ###### Start Sorting #######
 	##
 	##	every new round of each degree, start from a save point which store the last group id that previous degree finish at
@@ -182,12 +183,10 @@ class SortController < ApplicationController
 			# get groups to put the student in				
 			@group_list.each do |each_group|
 				# ignore the groups that before the save point
-				if each_group.id > save_point || save_point == number_of_groups
+				if each_group.id > save_point || save_point == @group_list[-1].id
 					# ignore the groups that is full, unless we have reminder
 					if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
-						if reminder > 0
-							reminder = reminder - 1
-						else
+						if grouped_count < number_of_groups
 							next
 						end
 					elsif Student.where(course_id: session[:course_id], group_id: each_group.id).count > group_size
@@ -198,7 +197,10 @@ class SortController < ApplicationController
 					@current_student_id = each_student_id	 
    	 				Scg.where(:course_id => session[:course_id], :student_id => @current_student_id).update_all(group_id: each_group.id)		
    	 				Student.where(:id => @current_student_id).update_all(group_id: each_group.id)			
-					# save save_point if the current degree list fininshes
+					# save save_point if the current degree list finishes
+					if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
+						grouped_count += 1
+					end
 					if student_list_by_degree.empty?
 						save_point = each_group.id
 						break
@@ -210,9 +212,8 @@ class SortController < ApplicationController
 		end
 	end
 ##### redirect  #########	
-    redirect_to '/grouped'
-	
-end
+    redirect_to '/grouped'	
+	end
  
   
   
