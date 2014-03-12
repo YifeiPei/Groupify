@@ -4,6 +4,7 @@ $(document).ready(function() {
   var par = $('table');
   $(par).hide();
   $("#deleteStudentMsg").hide();
+
   function amountOfStudents() {
     $("table").each(function() {
       var amount = $($(this).children("tbody")[0]).children('tr').length;
@@ -12,37 +13,74 @@ $(document).ready(function() {
       $(groupAmount).html(amount);
     });
   }
+  
   $("table").sortable({
     items: 'tbody > tr',
     cursor: 'move',
-    connectWith: 'table',
+    connectWith: 'table, #drag_delete',
     dropOnEmpty: true,
+    start: function(e, ui) {
+      $('#drag_delete').toggle();
+    },
+    stop: function(e, ui) {
+      $('#drag_delete').toggle();
+    },
     receive: function(e, ui){
 
       // only append to tbody if the row body is empty
       if ($(this).find("tbody").children("tr").length == 0) {
         $(this).find("tbody").append(ui.item);
       }
-      amountOfStudents(ui);
+      amountOfStudents();
       $.post('/grouped/drop_update', {student_id: ui.item.attr("id"), group_id: $(this).find("tbody").attr("id")});
     }
   });
-});
-function deleteStudent(){
-  	$("#deleteStudentMsg").show();
-	$("tbody").css('cursor', 'pointer');
- 	$("tbody").click(function(e, ui){
-	    yesnodialog('Comfirm', 'Cancel', $(this), $(this).find("tr").attr("id"));
-	});
 
+  $('#drag_delete').droppable({
+    over: function(e, ui) {
+      $(this).css('opacity', '1');
+    },
+    out: function(e, ui) {
+      $(this).css('opacity', '0.3');
+    },
+    tolerance: 'pointer',
+    drop: function(e, ui) {
+      console.log('You have just been dropped');
+      var response = confirm("Are you sure you want to delete this student?");
+      $(this).css('opacity', '0.3');
+
+      if (response == true) {
+        var id = $(ui.draggable).attr('id');
+        $.post('/grouped/delete_student', {student_id: id});
+        //alert("The student " + id + " has been successfuly deleted.");
+        $(ui.draggable).remove();
+        amountOfStudents();
+      }
+    }
+  });
+
+});
+
+var enableDelete = false;
+function deleteStudent(){
+  $("#deleteStudentMsg").show();
+	$("tbody").css('cursor', 'pointer');
+
+  if (enableDelete == false) {
+   	$("tbody").click(function(e, ui){
+  	    yesnodialog('Comfirm', 'Cancel', $(this), $(this).find("tr").attr("id"));
+  	});
+  }
+  enableDelete = true;
 };
+
 function yesnodialog(button1, button2, element, id){
   var btns = {};
   btns[button1] = function(){ 
       element.parents('li').hide();
       $(this).dialog("close");
   	  $.post('/grouped/delete_student', {student_id: id});
-   	 alert("The student has been successfuly deleted.");
+   	  alert("The student has been successfuly deleted.");
   	  location.reload();
 
   };
@@ -56,6 +94,8 @@ function yesnodialog(button1, button2, element, id){
     modal:true,
     buttons:btns
   });
+  $("tbody").unbind("click");
+
 }
 $('.delete').click(function(){
     yesnodialog('Yes', 'No', $(this));
@@ -75,6 +115,8 @@ function showAll() {
   $(par).show();};
 </script>
 
+
+<%= image_tag 'trash.png', id: 'drag_delete', alt: 'delete_student' %>
 <div class="container">
 
 <h1><%= @current_course.name %></h1>
