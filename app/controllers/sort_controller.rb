@@ -183,7 +183,7 @@ class SortController < ApplicationController
 			# get groups to put the student in				
 			@group_list.each do |each_group|
 				# ignore the groups that before the save point
-				if each_group.id > save_point || save_point == @group_list[-1].id
+					if each_group.id > save_point || save_point == @group_list[-1].id
 					# ignore the groups that is full, unless we have reminder
 					if Student.where(course_id: session[:course_id], group_id: each_group.id).count == group_size
 						if grouped_count < number_of_groups
