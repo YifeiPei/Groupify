@@ -1,1 +1,1 @@
-sudo kill -9 $(ps aux | grep ruby | awk 'NR==2{print $2}')
+sudo kill -9 $(ps aux | grep ruby | awk '{print $2}') > server_log 2>&1
