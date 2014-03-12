@@ -178,6 +178,7 @@ class SortController < ApplicationController
 	##
 	# get each value in hash
 	@student_new_list.each do |key, student_list_by_degree|
+		student_list_by_degree = student_list_by_degree.shuffle
 		# stop when no student in the list 
 		while !student_list_by_degree.empty? do	
 			# get groups to put the student in				
