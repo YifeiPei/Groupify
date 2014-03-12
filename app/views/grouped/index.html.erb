@@ -64,16 +64,15 @@ $(document).ready(function() {
 var enableDelete = false;
 function deleteStudent(){
   $("#deleteStudentMsg").show();
-	$("tr").css('cursor', 'pointer');
-
+  $("tr").css('cursor', 'pointer');
+	
   if (enableDelete == false) {
    	$("tr").click(function(e, ui){
   	  var response = confirm("Are you sure you want to delete this student?");
-      $(this).css('opacity', '0.3');
       if (response == true) {
         var id = $(this).attr("id");
         $.post('/grouped/delete_student', {student_id: $(this).attr("id")});
-       $(this).remove(); 
+       	$(this).remove(); 
        } 	    
   	});
   }
