@@ -64,42 +64,21 @@ $(document).ready(function() {
 var enableDelete = false;
 function deleteStudent(){
   $("#deleteStudentMsg").show();
-	$("tbody").css('cursor', 'pointer');
+	$("tr").css('cursor', 'pointer');
 
   if (enableDelete == false) {
-   	$("tbody").click(function(e, ui){
-  	    yesnodialog('Comfirm', 'Cancel', $(this), $(this).find("tr").attr("id"));
+   	$("tr").click(function(e, ui){
+  	  var response = confirm("Are you sure you want to delete this student?");
+      $(this).css('opacity', '0.3');
+      if (response == true) {
+        var id = $(this).attr("id");
+        $.post('/grouped/delete_student', {student_id: $(this).attr("id")});
+       $(this).remove(); 
+       } 	    
   	});
   }
   enableDelete = true;
 };
-
-function yesnodialog(button1, button2, element, id){
-  var btns = {};
-  btns[button1] = function(){ 
-      element.parents('li').hide();
-      $(this).dialog("close");
-  	  $.post('/grouped/delete_student', {student_id: id});
-   	  alert("The student has been successfuly deleted.");
-  	  location.reload();
-
-  };
-  btns[button2] = function(){ 
-      // Do nothing
-      $(this).dialog("close");
-  };
-  $("<div>Are you sure?</div>").dialog({
-    autoOpen: true,
-    title: 'Comfirm',
-    modal:true,
-    buttons:btns
-  });
-  $("tbody").unbind("click");
-
-}
-$('.delete').click(function(){
-    yesnodialog('Yes', 'No', $(this));
-})
 
 function showGroup(msg) {
     $('#' + msg).toggle(500);
