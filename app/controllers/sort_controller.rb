@@ -212,6 +212,8 @@ class SortController < ApplicationController
 			end
 		end
 	end
+	@current_course.grouped = true
+	@current_course.save
 ##### redirect  #########	
     redirect_to '/grouped'	
 	end

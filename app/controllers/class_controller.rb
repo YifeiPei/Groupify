@@ -44,7 +44,7 @@ class ClassController < LecturerApplicationController
     		sc.group_size = params[:group_size]
     	end
     	@sort_config.save
-		redirect_to "/sort/sort"
+		redirect_to "/sort/advanced_sort"
 	    else
 			redirect_to "/lecturer"
    		end
