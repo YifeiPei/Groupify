@@ -1,4 +1,5 @@
 Trunk::Application.routes.draw do
+  get "features/index"
   get 'class/sorted'
   get "add_course/add_course"
   get "landing/thankyou"
@@ -32,6 +33,7 @@ end
   get "contact/contact"
   get "sort/index"
   get "contact/index"
+  get "about/privacy"
   get "about/index"
   get "class/index"
   get "lecturer/index"

@@ -1,28 +1,32 @@
+<div id="container">
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Groupify</a>
-            </div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <!--div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a>
-                    </li>
-                    <li><a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div-->
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+      <a class="navbar-brand" href="/"><%= image_tag( "Groupify2small.png", :alt => "Form groups quickly and easily" ) %></a>
+    </div>
+
+    <div class="navbar-form navbar-right">
+      <ul class="nav navbar-nav">
+        <li><a href="/features">Features</a></li>
+        <li><a href="/about/blog">Blog</a></li>
+        <li><a href="/signup/signup">Sign up!</a></li>
+      </ul>
+
+      <% if session[:user_id] == nil %>
+        <a href="/login/login" class = "btn btn-success" >Log in</a>
+      <% else %>
+        <a href="/lecturer" class = "btn btn-success" >Home</a>
+      <% end %>
+    </div>
+  </div>
+</nav>
 
     <div class="container">
 
@@ -52,7 +56,7 @@
             </div>
             <div class="col-lg-6 col-sm-12">
                 <img class="img-circle img-responsive" src="/images/ic.jpg">
-                <h3>Ivan Chen (Xi)
+                <h3>Ivan (Xi) Chen
                     <small>Co Founder / Back-end Development</small>
                 </h3>
                 <p>Ivan maps out our back-end services and leads the way in implementing the functionality we need.</p>
@@ -78,21 +82,38 @@
 
         <hr>
 
-        <footer>
-            <div class="row">
-              <ul class="nav navbar-nav">
-                    <li><a href="/about">About</a>
-                    </li>
-                     <li><a href="/about/blog">Blog</a>
-                    </li>
-                    <!--li><a href="">Contact</a>
-                    </li-->
-                </ul>
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Groupify 2014</p>
-                </div>
-            </div>
-        </footer>
+        
 
     </div>
     <!-- /container -->
+
+<footer id="aboutfooter">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="nav navbar-nav">
+          <li><a href="/about">About us</a></li>
+          <li><a href="/about/privacy">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+   <div class="row">
+    <div class="col-sm-6">
+      <div style="padding:0px 15px">
+      <p>All Images <img src='http://i.creativecommons.org/l/by/2.0/80x15.png' alt='Creative Commons Attribution 2.0 Generic License' title='Creative Commons Attribution 2.0 Generic License' border='0'></a>&nbsp;&nbsp;by&nbsp;<a href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>&nbsp;</a><a xmlns:cc='http://creativecommons.org/ns#' rel='cc:attributionURL' property='cc:attributionName' href='http://www.flickr.com/people/francisco_osorio/' target='_blank'>francisco_osorio</a><a href='http://www.imagecodr.org/' target='_blank'>&nbsp;</a></p>
+      <p>Copyright &copy; Groupify 2014</p>
+    </div>
+    </div>
+
+    <div class="col-sm-6" id="socialmediaicons">
+      <a href="https://www.facebook.com/groupifyau"><%=  image_tag( "fb.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://plus.google.com/101720690552888097186" rel="publisher"><%=  image_tag( "google+.png", :alt => "Form groups quickly and easily" ) %></a>
+      <a href="https://twitter.com/GoGroupify"><%=  image_tag( "twitter.png", :alt => "Form groups quickly and easily" ) %></a>
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><g:plusone></g:plusone>
+    </div>
+
+    </div>
+  </div>
+</footer>
+</div>

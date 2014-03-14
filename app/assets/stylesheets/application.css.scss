@@ -1,0 +1,90 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.ui.all
+ *= require_tree .
+ *= require_tree ../../../vendor/assets/stylesheets/.
+ */
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+   padding-bottom: 111px;
+}
+#header {
+   background:#ff0;
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   /*height:60px;   /* Height of the footer */
+}
+
+body {
+    padding-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+}
+
+ .blogitem {
+     margin: 30px;
+}
+
+.invalid_notice {
+	color: red;
+}
+
+.navbarbuttons {
+    padding-top:15px;
+}
+
+#calltoaction {
+    height: 95%;
+    width: 100%;
+}
+
+#footernav {
+    padding: 0px 20px 0px 20px;
+}
+
+#getstarted {
+    padding: 18px 28px;
+    font-size: 22px; 
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+#socialmediaicons {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+#socialmediaicons a:hover {
+    background-color: transparent;
+}
+
+footer {
+    background-color: #b0b0b0;
+    margin: 0px;
+}
+

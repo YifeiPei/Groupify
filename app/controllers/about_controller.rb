@@ -7,4 +7,13 @@ class AboutController < ApplicationController
   def blog
     
   end
+
+  def privacy
+
+  end
+
+  def export_privacy
+    send_file "#{Rails.root}/public/GroupifyPrivacyPolicy.pdf" 
+  end
+
 end
