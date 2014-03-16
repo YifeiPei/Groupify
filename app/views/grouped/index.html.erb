@@ -24,6 +24,7 @@ $(document).ready(function() {
     },
     stop: function(e, ui) {
       $('#drag_delete').toggle();
+      amountOfStudents();
     },
     receive: function(e, ui){
 
@@ -31,7 +32,6 @@ $(document).ready(function() {
       if ($(this).find("tbody").children("tr").length == 0) {
         $(this).find("tbody").append(ui.item);
       }
-      amountOfStudents();
       $.post('/grouped/drop_update', {student_id: ui.item.attr("id"), group_id: $(this).find("tbody").attr("id")});
     }
   });
@@ -54,30 +54,37 @@ $(document).ready(function() {
         $.post('/grouped/delete_student', {student_id: id});
         //alert("The student " + id + " has been successfuly deleted.");
         $(ui.draggable).remove();
-        amountOfStudents();
       }
     }
   });
+  
+  var enableDelete = false;
+  function deleteStudent(){
+    $("#deleteStudentMsg").show();
+    $("tr").css('cursor', 'pointer');
+  	
+    if (enableDelete == false) {
+     	$("tr").click(function(e, ui){
+        var response = confirm("Are you sure you want to delete this student?");
+        if (response == true) {
+          var id = $(this).attr("id");
+          $.post('/grouped/delete_student', {student_id: $(this).attr("id")});
+         	$(this).remove();
 
+          $('tr').off('click');
+          $("#deleteStudentMsg").hide();
+          $("tr").css('cursor', 'move');
+          enableDelete = false;
+          amountOfStudents();
+        }
+      });
+    }
+    enableDelete = true;
+  };
+
+  $('#delete_student').click(deleteStudent);
 });
 
-var enableDelete = false;
-function deleteStudent(){
-  $("#deleteStudentMsg").show();
-  $("tr").css('cursor', 'pointer');
-	
-  if (enableDelete == false) {
-   	$("tr").click(function(e, ui){
-  	  var response = confirm("Are you sure you want to delete this student?");
-      if (response == true) {
-        var id = $(this).attr("id");
-        $.post('/grouped/delete_student', {student_id: $(this).attr("id")});
-       	$(this).remove(); 
-       } 	    
-  	});
-  }
-  enableDelete = true;
-};
 
 function showGroup(msg) {
     $('#' + msg).toggle(500);
@@ -118,7 +125,7 @@ function showAll() {
   </div>
 <% end %>
  <%= button_to("Add student", '/grouped', {class: "btn", remote: true, form: {"style" => "display: inline-block", id: "add_student_button"}}) %>
-  <%= button_tag('Delete student', {class: 'btn', onclick: "deleteStudent();", type: 'button'}) %>
+  <%= button_tag('Delete student', {class: 'btn', type: 'button', id: "delete_student"}) %>
  <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
  <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
   <div id="add_student" class="row">
