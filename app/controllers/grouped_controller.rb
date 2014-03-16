@@ -82,6 +82,13 @@ class GroupedController < LecturerApplicationController
     @current_course = Course.find_by(user_id: session[:user_id], id: session[:course_id])
     Student.where(:id => params[:student_id]).update_all(group_id: params[:group_id])
     Scg.where(:student_id => params[:student_id], :course_id => @current_course.id).update_all(group_id: params[:group_id])  
+    redirect_to "/grouped"  
+  end
+  
+  def delete_student
+    @current_course = Course.find_by(user_id: session[:user_id], id: session[:course_id])
+    Student.delete(params[:student_id])
+    Scg.delete(Scg.find_by(:student_id => params[:student_id]))
    	redirect_to "/grouped"	
   end
 end
