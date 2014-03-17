@@ -19,6 +19,7 @@ $(document).ready(function() {
     cursor: 'move',
     connectWith: 'table, #drag_delete',
     dropOnEmpty: true,
+    scroll: false,
     start: function(e, ui) {
       $('#drag_delete').toggle();
     },
