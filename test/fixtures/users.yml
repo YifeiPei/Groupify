@@ -1,0 +1,5 @@
+one:
+  id: 1
+  username: test
+  encrypted_password: $2a$10$Ru.nxGfFFGxvDjEcDb5MY.5DD92JP20WaYvRlarOgczw4ufF4ejq. #testing
+  salt: $2a$10$Ru.nxGfFFGxvDjEcDb5MY.
