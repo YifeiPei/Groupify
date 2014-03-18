@@ -5,3 +5,15 @@
 #lecturerfooter {
     position: relative;
 }
+
+.gn-menu-wrapper {
+	top: 70px;
+}
+
+a.gn-icon-menu.gn-icon:hover {
+	background: transparent;
+}
+
+.gn-menu-main > li:last-child {
+	border: none;
+}
