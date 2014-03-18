@@ -30,7 +30,36 @@
             </button>
             <a class="navbar-brand" href="/"><%=  image_tag( "Groupify2small.png", :alt => "Form groups quickly and easily" ) %></a>
         </div>
+        <% if params[:controller] == "grouped" %>
+    <ul id="gn-menu" class="gn-menu-main navbar-form navbar-left" style="padding: 0;">
+				<li class="gn-trigger">
+			<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+			<nav class="gn-menu-wrapper">
+				<div class="gn-scroller">
+					<ul class="gn-menu">
+						<li class="gn-search-item">
+							<input placeholder="Search" type="search" class="gn-search">
+							<a class="gn-icon gn-icon-search"><span>Search</span></a>
+						</li>
+						<li>
+							<a class="gn-icon gn-icon-download" onclick = "window.location.href='/grouped/export_csv'">Downloads</a>
 
+						</li>
+						<% if !@current_course.confirmed %>
+						<li>
+    					<%= link_to "<a class= 'gn-icon gn-icon-download'>Confirm Groups</a>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?\n\nThis will send an email to all students to notify them of their groups."}} %>
+						</li>
+    					<% end %>
+
+						<li><a class="gn-icon gn-icon-cog">Delete Student</a></li>
+						<li><a class="gn-icon gn-icon-cog">Settings</a></li>
+						<li><a class="gn-icon gn-icon-help">Help</a></li>
+					</ul>
+				</div><!-- /gn-scroller -->
+			</nav>
+		</li>
+	</ul>
+	<% end %>
 <div class="navbar-form navbar-left">
 <button onclick="window.location.href='/lecturer'" class = "btn btn-success">Home</button>
 
@@ -96,5 +125,8 @@
     </div>
     <!-- /container -->
 </div>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
 </body>
 </html>

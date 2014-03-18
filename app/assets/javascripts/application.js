@@ -15,3 +15,6 @@
 //= require jquery.ui.all
 //= require turbolinks
 //= require bootstrap
+//= require modernizr.custom.js
+//= require gnmenu.js
+//= require classie.js

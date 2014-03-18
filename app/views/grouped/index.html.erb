@@ -102,6 +102,7 @@ function showAll() {
 </script>
 
 
+
 <%= image_tag 'trash.png', id: 'drag_delete', alt: 'delete_student' %>
 <div class="container">
 
@@ -117,7 +118,6 @@ function showAll() {
     <%= number_field_tag 'group_size', @old_size, in: 1...10 %>
     <br />
     <%= submit_tag 'Resort', class: "btn" %>
-    <%= link_to "<button class= 'btn'>Confirm Groups</button>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?\n\nThis will send an email to all students to notify them of their groups."}} %>
   <% end %>
 <% else %>
   <div class="alert alert-info">
@@ -127,8 +127,6 @@ function showAll() {
 <% end %>
  <%= button_to("Add student", '/grouped', {class: "btn", remote: true, form: {"style" => "display: inline-block", id: "add_student_button"}}) %>
   <%= button_tag('Delete student', {class: 'btn', type: 'button', id: "delete_student"}) %>
- <%= button_tag('Download', {class: 'btn', onclick: "window.location.href='/grouped/export_csv'", type: 'button'}) %>
- <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/lecturer'", type: 'button'}) %>
   <div id="add_student" class="row">
   <% if !session[:err_msg][1].blank? && !session[:err_msg][2].blank? && !session[:err_msg][3].blank?  %>
 
