@@ -26,6 +26,15 @@
       Email:</br> <%= f.text_field :email%>
     </p>
 
+    <p>
+      University:</br> <%= f.text_field :university%>
+    </p>
+
+    <p>
+      </br> <%= f.select( :user_type, options_for_select( [['Lecturer', 1  ],[ 'Student', 2 ]] ), {:prompt => "Select user type"} ) %>
+    </p>
+
+
     <p>      
       Password:</br> <%= f.password_field :password%>
     </p>
@@ -33,6 +42,7 @@
     <p>     
       Password Confirmation:</br> <%= f.password_field :password_confirmation%>
     </p>
+
  	<%= f.submit :Signup, :class => "btn" %>
       <%= button_tag('Back', {class: 'btn', onclick: "window.location.href='/'", type: 'button'}) %>
   <% end %>
