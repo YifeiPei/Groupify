@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  'no': 1
   fitness: 1
 
 two:
   name: MyString
-  'no': 1
   fitness: 1

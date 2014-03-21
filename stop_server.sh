@@ -1,1 +1,1 @@
-sudo kill -9 $(cat tmp/pids/server.pid)
+sudo kill -9 $(ps aux | grep ruby | awk '{print $2}') > server_log 2>&1

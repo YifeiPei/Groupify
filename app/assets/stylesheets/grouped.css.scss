@@ -9,3 +9,11 @@
 	font-size: 24px;
 	font-weight: bold;
 }
+
+#drag_delete {
+	position: fixed;
+	right: 25px;
+	top: 70px;
+	display: none;
+	opacity:0.3;
+}
