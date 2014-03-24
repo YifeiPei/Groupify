@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20140302232306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "course_id"
+    t.date     "first_use"
+    t.date     "last_login"
   end
 
 end
