@@ -15,7 +15,7 @@
        <% @courses.each do |course| %>
           <tr>
             <td><%= link_to course.name, controller: "grouped", action: "index", id: course.id %></td>
-            <td> <%= Student.find(:all, :conditions => {:course_id => course.id}).count  %></td>
+            <td> <%= Student.where(course_id: course.id).count  %></td>
        <td><%= Student.where(:course_id => course.id).distinct.count(:group_id) =%> </td>
 
             <td>

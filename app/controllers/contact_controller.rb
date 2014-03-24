@@ -2,7 +2,7 @@ class ContactController < ApplicationController
   layout 'lecturer_application'
 
   def contact
-	  @students = Student.find(:all, :conditions => {:course_id => session[:course_id]})
+	  @students = Student.where(course_id: session[:course_id])
     @current_course = Course.find_by(user_id: session[:user_id], id: session[:course_id])
   end
 
