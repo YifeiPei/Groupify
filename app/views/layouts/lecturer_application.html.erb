@@ -47,7 +47,9 @@
 						</li>
 						<% if !@current_course.confirmed %>
 						<li>
-    					<%= link_to "<a class= 'gn-icon gn-icon-download'>Confirm Groups</a>".html_safe, {controller: "contact", action: "notify_group" , id: @current_course.id}, {data:{confirm: "Do you want to finalise the groups for #{@current_course.name}?\n\nThis will send an email to all students to notify them of their groups."}} %>
+    					<a class="gn-icon gn-icon-download" onclick = "window.location.href='/contact/notify_group'" id = "<%= @current_course.id %>" confirm = "Do you want to finalise the groups for #{@current_course.name}?\n\nThis will send an email to all students to notify them of their groups.">
+						Confirm Groups
+						</a>
 						</li>
     					<% end %>
 
