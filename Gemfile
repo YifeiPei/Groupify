@@ -7,6 +7,8 @@ group :development do
 end
 gem 'protected_attributes'
 
+gem 'newrelic_rpm'
+
 gem "bcrypt-ruby", :require => "bcrypt"
 
 gem 'devise', '3.0.0.rc'
