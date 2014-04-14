@@ -29,9 +29,19 @@ class ContactController < ApplicationController
     threads = []
     process = fork do
       for i in 1..@group_count
-        body = "Hi! You are enrolled in #{@current_course.name}. You have been allocated to group #{i}.\n\n The course administrator has engaged Groupify to allocate you to a group. You can contact us via our website at www.groupify.com.au. We have been given your information for the purpose of forming groups and providing contact between you and the lecturer. If we didn't receive your information, group formation would take a lot longer for everyone. We won't disclose your information to anyone. If you would like to make a complaint please contact us at contact@groupify.com.au."
+        body = "Hi! You are enrolled in #{@current_course.name}. You have been allocated to group #{i}.\n" \
+        "The following students are in group #{i}: \n\n"
 		    @group_emails = []
 		    @students = Student.find(:all, :conditions => {:course_id => @current_course.id, :group_id => Group.find_by(:course_id => @current_course.id, :number => i).id})
+        @students.each do |student|
+          body += "  #{student.first_name} can be reached at #{student.email}\n" 
+        end
+        body += "\n\n The course administrator has engaged Groupify to allocate you to a group." \
+        "You can contact us via our website at www.groupify.com.au. We have been given your information" \
+        "for the purpose of forming groups and providing contact between you and the lecturer. If we didn't" \
+        "receive your information, group formation would take a lot longer for everyone. We won't disclose your" \
+        "information to anyone. If you would like to make a complaint please contact us at contact@groupify.com.au."
+
         @students.each do |student|
           @group_emails << student.email
   			end

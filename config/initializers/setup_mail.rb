@@ -4,7 +4,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => "587",
   :domain               => "groupify.com.au",
   :user_name            => "noreply@groupify.com.au",
-  :password             => "Groupify",
+  :password             => "leap4joy",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
