@@ -22,9 +22,9 @@ For development we usually run the rails webbrick server. These instructions are
 ## 2. Configuration
 
 For development you will need to install the following:
-* git
-* ruby
-* mysql
++ git
++ ruby
++ mysql
 
 On ubuntu you can do this with the command:
 > `sudo apt-get install git ruby make ruby-dev mysqlserver libmysqlclient-dev`
@@ -58,9 +58,9 @@ To redeploy our groupify web app follow these steps:
 
 5. Run `RAILS_ENV=production bundle exec rake assets:precompile`
 
-6. Delete all files in */srv/groupify* directory using `sudo rm -rf /srv/groupify/\*`
+6. Delete all files in */srv/groupify* directory using `sudo rm -rf /srv/groupify/*`
 
-7. Copy trunk_old into */srv/groupify* using `sudo cp -r \* /srv/groupify/`
+7. Copy trunk_old into */srv/groupify* using `sudo cp -r * /srv/groupify/`
 while inside the *trunk\_old* directory
 
 8. Restart the nginx server using `sudo /opt/nginx/sbin/nginx -s reload`
@@ -70,6 +70,8 @@ while inside the *trunk\_old* directory
 * Writing tests
 * Code review
 * Other guidelines
+
+TBA
 
 ### Who do I talk to? ###
 
