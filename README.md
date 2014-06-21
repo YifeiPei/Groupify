@@ -4,8 +4,6 @@ This is the core __Groupify__ website repository. It contains the Ruby on Rails 
 This repository is for development of the __Groupify__ website. It is in version __0.01__.
 ----------------------------------------------------------
 
-//* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
 ### How do I get set up? ###
 
 1. Summary of set up
