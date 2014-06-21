@@ -4,7 +4,7 @@ This is the core __Groupify__ website repository. It contains the Ruby on Rails 
 This repository is for development of the __Groupify__ website. It is in version __0.01__.
 ----------------------------------------------------------
 
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+//* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
 
@@ -77,4 +77,4 @@ while inside the *trunk\_old* directory
 
 To find out more contact Des at des.wagner at alumni.adelaide.edu.au.
 
-And you can try yifei at groupify.com.au 
+And you can try yifei at groupify.com.au
