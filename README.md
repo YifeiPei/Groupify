@@ -27,7 +27,7 @@ For development you will need to install the following:
 + mysql
 
 On ubuntu you can do this with the command:
-> `sudo apt-get install git ruby make ruby-dev mysqlserver libmysqlclient-dev`
+> `sudo apt-get install build-essential git ruby make ruby-dev mysqlserver libmysqlclient-dev`
 
 ## 3. Dependencies
 
