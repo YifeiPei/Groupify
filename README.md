@@ -77,4 +77,4 @@ TBA
 
 To find out more contact Des at des.wagner at alumni.adelaide.edu.au.
 
-And you can try yifei at groupify.com.au
+And you can try Yifei at groupify.com.au
